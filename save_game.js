@@ -1,0 +1,66 @@
+function save_game()
+{
+	//game_saved=1;
+
+	localStorage.removeItem(tag_game_saved);
+	localStorage.removeItem(tag_agent_present);
+	localStorage.removeItem(tag_info_value);
+	localStorage.removeItem(tag_info_stealth);
+	localStorage.removeItem(tag_agent_char_1);	
+	localStorage.removeItem(tag_agent_char_2);	
+	localStorage.removeItem(tag_vp_map_boxes);
+	localStorage.removeItem(tag_info_level);
+	localStorage.removeItem(tag_stealth_level);
+	localStorage.removeItem(tag_char_1);
+	localStorage.removeItem(tag_char_2);
+	localStorage.removeItem(tag_agent_name);
+	localStorage.removeItem(tag_agent_flavor_text);
+	localStorage.removeItem(tag_game_agent_array);
+	localStorage.removeItem(tag_red_police_array);
+	localStorage.removeItem(tag_map_colors_array);
+	localStorage.removeItem(tag_in_deck);
+	localStorage.removeItem(tag_add_deck);
+	localStorage.removeItem(tag_played);
+	localStorage.removeItem(tag_turn);
+	localStorage.removeItem(tag_diplomacy_points);
+	localStorage.removeItem(tag_military_points);
+	localStorage.removeItem(tag_demo_completed);
+	localStorage.removeItem(tag_red_police_choice);
+	localStorage.removeItem(tag_vp_map_box_score_array);
+	localStorage.removeItem(tag_geoforming_points);
+	localStorage.removeItem(tag_code_1);
+	localStorage.removeItem(tag_code_2);
+	localStorage.removeItem(tag_carbon_level);
+	
+	localStorage.setItem(tag_game_saved,JSON.stringify(game_saved));
+	localStorage.setItem(tag_agent_present,JSON.stringify(agent_present));
+	localStorage.setItem(tag_info_value,JSON.stringify(info_value));
+	localStorage.setItem(tag_info_stealth,JSON.stringify(info_stealth));
+	localStorage.setItem(tag_agent_char_1,JSON.stringify(agent_char_1));
+	localStorage.setItem(tag_agent_char_2,JSON.stringify(agent_char_2));	
+	localStorage.setItem(tag_vp_map_boxes,JSON.stringify(vp_map_boxes));
+	localStorage.setItem(tag_info_level,JSON.stringify(info_level));
+	localStorage.setItem(tag_stealth_level,JSON.stringify(stealth_level));
+	localStorage.setItem(tag_char_1,JSON.stringify(char_1));	
+	localStorage.setItem(tag_char_2,JSON.stringify(char_2));
+	localStorage.setItem(tag_agent_name,JSON.stringify(agent_name));
+	localStorage.setItem(tag_agent_active,JSON.stringify(agent_active));
+	localStorage.setItem(tag_agent_flavor_text,JSON.stringify(agent_flavor_text));
+	localStorage.setItem(tag_game_agent_array,JSON.stringify(game_agent_array));
+	localStorage.setItem(tag_red_police_array,JSON.stringify(red_police_array));
+	localStorage.setItem(tag_map_colors_array,JSON.stringify(map_colors_array));
+	localStorage.setItem(tag_in_deck,JSON.stringify(in_deck));
+	localStorage.setItem(tag_add_deck,JSON.stringify(add_deck));
+	localStorage.setItem(tag_played,JSON.stringify(played));
+	localStorage.setItem(tag_turn,JSON.stringify(turn));
+	localStorage.setItem(tag_diplomacy_points,JSON.stringify(diplomacy_points));
+	localStorage.setItem(tag_military_points,JSON.stringify(military_points));
+	localStorage.setItem(tag_demo_completed,JSON.stringify(demo_completed));
+	localStorage.setItem(tag_red_police_choice,JSON.stringify(red_police_choice));
+	localStorage.setItem(tag_vp_map_box_score_array,JSON.stringify(vp_map_box_score_array));
+	localStorage.setItem(tag_geoforming_points,JSON.stringify(geoforming_points));
+	localStorage.setItem(tag_code_1,JSON.stringify(code_1));
+	localStorage.setItem(tag_code_2,JSON.stringify(code_2));
+	localStorage.setItem(tag_carbon_level,JSON.stringify(carbon_level));
+	
+}

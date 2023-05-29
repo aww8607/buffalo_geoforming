@@ -1,0 +1,54 @@
+Ways to make the game more interesting
+
+
+1) Agents start out on board - no more agent cards
+2) Pick card to add intel points too based on charactaristic
+- Only one agent gets the point
+3) Add card type for changing charichtaristic
+- get rid of negative charactaristic
+4) Counter intel only works on charichtaristic
+
+
+Actions
+1) add stealth
+2) add info level
+3) add opps point
+4) remove card from deck
+5) add victory point
+
+Cards
+1) remove agent
+2) destroy VP
+3) reduce info level
+4) reduce stealth level
+5) move police
+6) Nothing
+
+menu_button_titles[0] = 'MENU';
+menu_button_titles[1] = 'KEY';
+menu_button_titles[2] = 'PLAY';
+menu_button_titles[3] = 'PASS';
+menu_button_titles[4] = 'BLOCK';
+menu_button_titles[5] = 'PLAY'; //add stealth
+menu_button_titles[6] = 'PLAY'; //add info level
+menu_button_titles[7] = 'PLAY'; //add ops point
+menu_button_titles[8] = 'PLAY'; //remove card from deck
+menu_button_titles[9] = 'PLAY'; //add victory points
+
+//permanent action variables
+var permanent_cost_used_1 = [];
+var permanent_cost_used_2 = [];
+var permanent_cost_used_3 = [];
+
+var permanent_cost_meta_type_1 = []; //Box or Op Points
+var permanent_cost_meta_type_2 = [];
+var permanent_cost_meta_type_3 = [];
+
+var permanent_cost_type_1 = []; //specific box type or point type
+var permanent_cost_type_2 = [];
+var permanent_cost_type_3 = [];
+
+var permanent_cost_value_1 = []; //info level or point type
+var permanent_cost_value_2 = [];
+var permanent_cost_value_3 = [];
+

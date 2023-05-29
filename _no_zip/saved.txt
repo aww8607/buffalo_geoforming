@@ -1,0 +1,269 @@
+var agent_present = [];
+var info_value = [];
+var info_stealth = [];
+var agent_char_1 = [];
+var agent_char_2 = [];
+vp_map_boxes
+
+var info_level = [];
+var stealth_level = [];
+var char_1 = [];
+var char_2 = [];
+var agent_name = [];
+var agent_flavor_text = [];
+var agent_active = [];
+
+var game_agent_array = [];
+
+var red_police_array = [];
+map_colors_array[n]
+
+in_deck
+add_deck
+played
+game_agent_array
+turn
+diplomacy_points
+military_points
+
+tag_demo_completed
+
+var game_saved = -1;
+var tag_game_saved = game_tag+"game_saved";
+var tag_agent_present = game_tag+"agent_present";
+var tag_info_value = game_tag+"info_value";
+var tag_info_stealth = game_tag+"info_stealth";
+var tag_agent_char_1 = game_tag+"agent_char_1";
+var tag_agent_char_2 = game_tag+"agent_char_2";
+var tag_vp_map_boxes = game_tag+"vp_map_boxes";
+var tag_info_level = game_tag+"info_level";
+var tag_stealth_level = game_tag+"stealth_level";
+var tag_char_1 = game_tag+"char_1";
+var tag_char_2 = game_tag+"char_2";
+var tag_agent_name = game_tag+"agent_name";
+var tag_agent_active = game_tag+"agent_active";
+var tag_agent_flavor_text = game_tag+"agent_active";
+var tag_game_agent_array = game_tag+"game_agent_array";
+var tag_red_police_array = game_tag+"red_police_array";
+var tag_map_colors_array = game_tag+"map_colors_array";
+var tag_in_deck = game_tag+"in_deck";
+var tag_add_deck = game_tag+"add_deck";
+var tag_played = game_tag+"played";
+var tag_turn = game_tag+"turn";
+var tag_diplomacy_points = game_tag+"diplomacy_points";
+var tag_military_points = game_tag+"military_points";
+var tag_demo_completed
+
+var game_tag="ANC_10_3_2021";
+
+var game_saved = -1;
+var tag_game_saved = game_tag+"game_saved";
+var tag_region_resource_number = game_tag+"region_resource_number";
+var tag_region_code_1 = game_tag+"region_code_1";
+
+
+function save_game()
+{
+    
+	
+	game_saved=1;
+    
+    localStorage.removeItem(tag_game_saved);
+
+    localStorage.removeItem(tag_region_resource_number);
+    localStorage.removeItem(tag_region_code_1);
+    localStorage.removeItem(tag_region_code_2);
+    localStorage.removeItem(tag_carbon_number);
+    localStorage.removeItem(tag_cohesion_number);
+    localStorage.removeItem(tag_climate_type_array);
+    localStorage.removeItem(tag_resource_time_out_array);
+    localStorage.removeItem(tag_total_carbon);
+    localStorage.removeItem(tag_max_carbon);
+    localStorage.removeItem(tag_p1_draw_probability);
+    localStorage.removeItem(tag_p1_card_used);
+    localStorage.removeItem(tag_p2_draw_probability);
+    localStorage.removeItem(tag_p2_card_used);
+    localStorage.removeItem(tag_p1_unit_position);
+    localStorage.removeItem(tag_p2_unit_position);
+    //localStorage.removeItem(tag_total_resources_available);
+    
+	localStorage.removeItem(tag_total_resources_available_0);
+	localStorage.removeItem(tag_total_resources_available_1);
+	localStorage.removeItem(tag_total_resources_available_2);
+	localStorage.removeItem(tag_total_resources_available_3);
+	localStorage.removeItem(tag_total_resources_available_4);
+	localStorage.removeItem(tag_total_resources_available_5);
+	localStorage.removeItem(tag_total_resources_available_6);	
+	
+    localStorage.removeItem(tag_demo_completed);
+	localStorage.removeItem(tag_turn);	
+
+	
+    
+    localStorage.setItem(tag_game_saved,JSON.stringify(game_saved));
+    localStorage.setItem(tag_region_resource_number,JSON.stringify(region_resource_number));
+    localStorage.setItem(tag_region_code_1,JSON.stringify(region_code_1));
+    localStorage.setItem(tag_region_code_2,JSON.stringify(region_code_2));
+    localStorage.setItem(tag_carbon_number,JSON.stringify(carbon_number));
+    localStorage.setItem(tag_cohesion_number,JSON.stringify(cohesion_number));
+    localStorage.setItem(tag_climate_type_array,JSON.stringify(climate_type_array));
+    localStorage.setItem(tag_resource_time_out_array,JSON.stringify(resource_time_out_array));
+    localStorage.setItem(tag_total_carbon,JSON.stringify(total_carbon));
+    localStorage.setItem(tag_max_carbon,JSON.stringify(max_carbon));
+    localStorage.setItem(tag_p1_draw_probability,JSON.stringify(p1_draw_probability));
+    localStorage.setItem(tag_p1_card_used,JSON.stringify(p1_card_used));
+    localStorage.setItem(tag_p2_draw_probability,JSON.stringify(p2_draw_probability));
+    localStorage.setItem(tag_p2_card_used,JSON.stringify(p2_card_used));
+    localStorage.setItem(tag_p1_card_hand,JSON.stringify(p1_card_hand));
+    localStorage.setItem(tag_p1_unit_position,JSON.stringify(p1_unit_position));
+    localStorage.setItem(tag_p2_unit_position,JSON.stringify(p2_unit_position));
+    //localStorage.setItem(tag_total_resources_available,JSON.stringify(total_resources_available));
+	localStorage.setItem(tag_total_resources_available_0,JSON.stringify(total_resources_available[0]));
+	localStorage.setItem(tag_total_resources_available_1,JSON.stringify(total_resources_available[1]));
+	localStorage.setItem(tag_total_resources_available_2,JSON.stringify(total_resources_available[2]));
+	localStorage.setItem(tag_total_resources_available_3,JSON.stringify(total_resources_available[3]));
+	localStorage.setItem(tag_total_resources_available_4,JSON.stringify(total_resources_available[4]));
+	localStorage.setItem(tag_total_resources_available_5,JSON.stringify(total_resources_available[5]));
+	localStorage.setItem(tag_total_resources_available_6,JSON.stringify(total_resources_available[6]));	
+	localStorage.setItem(tag_turn,JSON.stringify(turn));
+	
+	
+	localStorage.setItem(tag_demo_completed,JSON.stringify(demo_completed));
+	
+	//console.log(JSON.parse(localStorage.getItem(tag_total_resources_available_5)));
+		
+}
+
+
+
+
+
+
+
+function load_game()
+{
+    var carbon_per_turn_holder = 0;
+
+	if(localStorage.getItem(tag_demo_completed) != null)
+	{
+		demo_completed=JSON.parse(localStorage.getItem(tag_demo_completed));
+	}
+	
+
+
+    if(localStorage.getItem(tag_game_saved) != null)
+    {
+
+		
+		
+		game_saved = JSON.parse(localStorage.getItem(tag_game_saved));
+        
+        region_resource_number = JSON.parse(localStorage.getItem(tag_region_resource_number));
+        region_code_1 = JSON.parse(localStorage.getItem(tag_region_code_1));
+        region_code_2 = JSON.parse(localStorage.getItem(tag_region_code_2));
+        carbon_number = JSON.parse(localStorage.getItem(tag_carbon_number));
+        cohesion_number = JSON.parse(localStorage.getItem(tag_cohesion_number));
+        climate_type_array = JSON.parse(localStorage.getItem(tag_climate_type_array));
+        resource_time_out_array = JSON.parse(localStorage.getItem(tag_resource_time_out_array));
+        total_carbon = JSON.parse(localStorage.getItem(tag_total_carbon));
+        max_carbon = JSON.parse(localStorage.getItem(tag_max_carbon));
+        p1_draw_probability = JSON.parse(localStorage.getItem(tag_p1_draw_probability));
+        p1_card_used = JSON.parse(localStorage.getItem(tag_p1_card_used));
+        p2_draw_probability = JSON.parse(localStorage.getItem(tag_p2_draw_probability));
+        p2_card_used = JSON.parse(localStorage.getItem(tag_p2_card_used));
+        p1_card_hand = JSON.parse(localStorage.getItem(tag_p1_card_hand));
+        p1_unit_position = JSON.parse(localStorage.getItem(tag_p1_unit_position));
+        p2_unit_position = JSON.parse(localStorage.getItem(tag_p2_unit_position));
+        //total_resources_available = JSON.parse(localStorage.getItem(tag_total_resources_available));
+		total_resources_available[0]=JSON.parse(localStorage.getItem(tag_total_resources_available_0));
+		total_resources_available[1]=JSON.parse(localStorage.getItem(tag_total_resources_available_1));
+		total_resources_available[2]=JSON.parse(localStorage.getItem(tag_total_resources_available_2));
+		total_resources_available[3]=JSON.parse(localStorage.getItem(tag_total_resources_available_3));
+		total_resources_available[4]=JSON.parse(localStorage.getItem(tag_total_resources_available_4));
+		total_resources_available[5]=JSON.parse(localStorage.getItem(tag_total_resources_available_5));
+		total_resources_available[6]=JSON.parse(localStorage.getItem(tag_total_resources_available_6));
+		turn=JSON.parse(localStorage.getItem(tag_turn));
+		
+		//tag_turn
+		
+
+        //loop through regions
+        for(s=0; s<region_count; s++)
+        {
+            if(resource_time_out_array[s]>0)
+            {    
+                resource_time_out_array[s]=resource_time_out_array[s]-1;
+
+            }
+
+            carbon_per_turn_holder=carbon_per_turn_holder+carbon_number[s];
+        }
+
+		
+		
+        supply_check();
+		check_resources();
+        carbon_per_turn=carbon_per_turn_holder;
+        total_carbon=total_carbon+carbon_per_turn;
+                        
+        update_resource_track();
+
+        update_instructions();
+		
+        update_map();
+        p1_check_card_playability(p1_card_hand);    
+        
+		delete_p1_cards();
+        update_p1_card(p1_card_hand[0],p1_card_hand[1],p1_card_hand[2],p1_card_hand[3],0,p1_card_graphic_holder,0);
+        
+        phase = 3;
+    }
+    else
+    {	
+		phase = 0;
+        update_menu_page(3);
+		//update_menu_page(10);
+    }
+}
+
+	localStorage.setItem(tag_game_saved,JSON.stringify(game_saved));
+
+	localStorage.setItem(tag_agent_present,JSON.stringify(agent_present));
+	localStorage.setItem(tag_info_value,JSON.stringify(info_value));
+	localStorage.setItem(tag_info_stealth,JSON.stringify(info_stealth));
+	localStorage.setItem(tag_agent_char_1,JSON.stringify(agent_char_1));
+	localStorage.setItem(tag_agent_char_2,JSON.stringify(agent_char_2));	
+	localStorage.setItem(tag_vp_map_boxes,JSON.stringify(vp_map_boxes));
+	localStorage.setItem(tag_info_level,JSON.stringify(info_level));
+	localStorage.setItem(tag_stealth_level,JSON.stringify(stealth_level));
+	localStorage.setItem(tag_char_1,JSON.stringify(char_1));	
+	localStorage.setItem(tag_char_2,JSON.stringify(char_2));
+	localStorage.setItem(tag_agent_name,JSON.stringify(agent_name));
+	localStorage.setItem(tag_agent_active,JSON.stringify(agent_active));
+	localStorage.setItem(tag_agent_flavor_text,JSON.stringify(agent_flavor_text));
+	localStorage.setItem(tag_game_agent_array,JSON.stringify(game_agent_array));
+	localStorage.setItem(tag_red_police_array,JSON.stringify(red_police_array));
+	localStorage.setItem(tag_map_colors_array,JSON.stringify(map_colors_array));
+	localStorage.setItem(tag_in_deck,JSON.stringify(in_deck));
+	localStorage.setItem(tag_add_deck,JSON.stringify(add_deck));
+	localStorage.setItem(tag_played,JSON.stringify(played));
+	localStorage.setItem(tag_turn,JSON.stringify(turn));
+	localStorage.setItem(tag_diplomacy_points,JSON.stringify(diplomacy_points));
+	localStorage.setItem(tag_military_points,JSON.stringify(military_points));
+	localStorage.setItem(tag_demo_completed,JSON.stringify(demo_completed));
+
+
+load_game()
+
+
+				diplomacy_point_text.text = diplomacy_points+" Operations Points";
+				military_point_text.text = military_points+" Victory Points";
+
+				police_graphic_update(0);
+				int_permanent_actions(scene);
+				new_card(-1);
+				agent_update();
+				
+				phase = 0;
+
+

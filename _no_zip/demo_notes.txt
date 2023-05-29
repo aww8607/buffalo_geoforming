@@ -1,0 +1,1576 @@
+function demo_completion_check()
+{
+	if(localStorage.getItem(tag_demo_completed) != null)
+	{
+		demo_completed = JSON.parse(localStorage.getItem(tag_demo_completed));
+	}
+	else{demo_completed = 0;}
+}
+
+
+
+
+14
+
+
+function demo_update(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no)
+{
+	if(demo_holder != null){destroySprite(demo_holder); demo_holder = null;}
+	
+	if(step_no >0 &&  demo_holder == null)
+	{
+		//console.log("build");
+		demo_holder = new demo_container(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);		
+	}
+	//else if(step_no == max_step){step_no = 0;}
+}
+
+
+
+class demo_container extends Phaser.GameObjects.Container 
+{
+    
+	constructor(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no) 
+	{
+		super(scene);
+		this.scene = scene;
+
+		var instruct_x = 0;
+		var instruct_y = 0;
+		var demo_instructions_text = "";
+		var demo_next_step_text = "";
+		
+		from_hex = 150;
+		move_unit = 1;
+		to_hex = 101;
+		play_card = 13;
+		target_hex = 177;
+		
+		var x_0_offset=0;
+		var y_0_offset=-15;
+		
+		var x_90_offset = 15;
+		var y_90_offset = 0;
+		
+		var x_180_offset = 0;
+		var y_180_offset = 20;
+		
+		var x_270_offset = -15;
+		var y_270_offset = 0;
+
+		var hex_x = [];
+		var hex_y = [];
+		
+		var button_x = [];
+		var button_y = [];
+		
+		var card_x = [];
+		var card_y = [];
+		
+		var card_button_right_x = [];
+		var card_button_right_y = [];
+		
+		var card_button_left_x = [];
+		var card_button_left_y = [];
+		
+		var units_x = [];
+		var units_y = [];
+		
+		for(var h=0; h<max_hex_number; h++)
+		{
+				if(Math.floor(h/25)%2 == 0)
+				{	
+					hex_x[h] = 20+33*(h%25)+18;
+					hex_y[h] = 60+25*Math.floor(h/25)+12;
+										
+				}
+				else if(Math.floor(h/25)%2 == 1)
+				{	
+					hex_x[h] = 36+33*(h%25)+18;
+					hex_y[h] = 60+25*Math.floor(h/25)+12;
+										
+				}	
+		}		
+		
+		for(var k= 0; k<8; k++)
+		{
+			units_x[k] = 5 + k*109;
+			units_y[k] = 450;
+		}
+		
+		for(var l=0; l<15; l++)
+		{
+			card_x[l] = 5+152*(l%5)+20;
+			card_y[l] = 510+120*Math.floor(l/5)+10;
+			
+			card_button_right_x[l] = 10+152*(l%5)+30;
+			card_button_right_y[l] = 235+510+30-185+120*Math.floor(l/5)+12;
+			
+			card_button_left_x[l] = 10+152*(l%5)+74+30;
+			card_button_left_y[l] = 235+510+30-185+120*Math.floor(l/5)+12;
+		}
+		
+		for(var w=0; w<5; w++)
+		{
+			button_x[w] = 5+109*7+30;
+			button_y[w] = 510+w*60+20;
+		}
+		
+		
+		if(step == 1)
+		{
+		
+			
+			phase = 9;
+			
+			//const arrow_1 = this.scene.add.image(hex_x[150]+x_0_offset, hex_y[150]+y_0_offset, card_graphics_array[47]);
+			//arrow_1.setOrigin(0,0);
+			//arrow_1.angle = 0;
+			//arrow_1.setScale(0.5);
+			//this.add(arrow_1);			
+			
+			
+			const arrow_2 = this.scene.add.image(hex_x[from_hex]+x_90_offset, hex_y[from_hex]+y_90_offset, card_graphics_array[47]);
+			arrow_2.setOrigin(0,0);
+			arrow_2.angle = 90;
+			arrow_2.setScale(0.5);
+			this.add(arrow_2);
+			
+			/*
+			
+			const arrow_3 = this.scene.add.image(button_x[3]+x_180_offset, button_y[3]+y_180_offset, card_graphics_array[47]);
+			arrow_3.setOrigin(0,0);
+			arrow_3.angle = 180;
+			arrow_3.setScale(0.5);
+			this.add(arrow_3);
+
+			const arrow_4 = this.scene.add.image(button_x[3]+x_270_offset, button_y[3]+y_270_offset, card_graphics_array[47]);
+			arrow_4.setOrigin(0,0);
+			arrow_4.angle = 270;
+			arrow_4.setScale(0.5);
+			this.add(arrow_4);
+			*/
+			
+			instruct_x = 100;
+			instruct_y = 100;//+Math.floor(Math.random()*100);
+			
+			const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[48]).setInteractive();
+			box.setOrigin(0,0);
+			box.setScale(0.5);
+			this.add(box);
+			box.on('pointerdown', () => {this.clickMe(scene);});
+			box.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+
+			demo_instructions_text ="This is a naval combat simulation game.  The first thing you need to do is learn how to move your ships.  Click on the hex with a blue pentagon at the top.";
+
+			const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+			demo_instructions.setOrigin(0,0);
+			demo_instructions.on('pointerdown', () => {this.clickMe(scene);});
+			demo_instructions.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+			this.add(demo_instructions);
+			
+			demo_next_step_text = "Click on the hex next to the arrow";
+			const demo_next_step = this.scene.add.text(instruct_x+20, instruct_y+145, demo_next_step_text, { fontSize: 'bold 24px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+			demo_next_step.setOrigin(0,0);
+			demo_next_step.on('pointerdown', () => {this.clickMe(scene);});
+			demo_next_step.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});		
+			this.add(demo_next_step);
+		
+			step=step+1;
+			
+			this.scene.add.existing(this);
+			this.depth = 91;
+
+		}
+		else if(step == 2)
+		{
+			if(hex_no == from_hex)
+			{
+				
+				phase = 9;
+				
+				//const arrow_1 = this.scene.add.image(hex_x[150]+x_0_offset, hex_y[150]+y_0_offset, card_graphics_array[47]);
+				//arrow_1.setOrigin(0,0);
+				//arrow_1.angle = 0;
+				//arrow_1.setScale(0.5);
+				//this.add(arrow_1);			
+				
+				
+				const arrow_2 = this.scene.add.image(units_x[move_unit]+x_90_offset+30, units_y[move_unit]+y_90_offset+30, card_graphics_array[47]);
+				arrow_2.setOrigin(0,0);
+				arrow_2.angle = 90;
+				arrow_2.setScale(0.5);
+				this.add(arrow_2);
+				
+				/*
+				
+				const arrow_3 = this.scene.add.image(button_x[3]+x_180_offset, button_y[3]+y_180_offset, card_graphics_array[47]);
+				arrow_3.setOrigin(0,0);
+				arrow_3.angle = 180;
+				arrow_3.setScale(0.5);
+				this.add(arrow_3);
+
+				const arrow_4 = this.scene.add.image(button_x[3]+x_270_offset, button_y[3]+y_270_offset, card_graphics_array[47]);
+				arrow_4.setOrigin(0,0);
+				arrow_4.angle = 270;
+				arrow_4.setScale(0.5);
+				this.add(arrow_4);
+				*/
+				
+				instruct_x = 100;
+				instruct_y = 250;//+Math.floor(Math.random()*100);
+				
+				const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[48]).setInteractive();
+				box.setOrigin(0,0);
+				box.setScale(0.5);
+				this.add(box);
+				box.on('pointerdown', () => {this.clickMe(scene);});
+				box.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+
+				demo_instructions_text ="Now, you need to pick a unit to move.  Let's pick a destroyer icon at the bottom of the map.";
+
+				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_instructions.setOrigin(0,0);
+				demo_instructions.on('pointerdown', () => {this.clickMe(scene);});
+				demo_instructions.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+				this.add(demo_instructions);
+				
+				demo_next_step_text = "Click on the box next to the arrow";
+				const demo_next_step = this.scene.add.text(instruct_x+20, instruct_y+145, demo_next_step_text, { fontSize: 'bold 24px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_next_step.setOrigin(0,0);
+				demo_next_step.on('pointerdown', () => {this.clickMe(scene);});
+				demo_next_step.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});		
+				this.add(demo_next_step);
+			
+				step=step+1;
+				
+				this.scene.add.existing(this);
+				this.depth = 91;
+
+				
+			}
+			else 
+			{
+				phase = 9;
+				
+				//const arrow_1 = this.scene.add.image(hex_x[150]+x_0_offset, hex_y[150]+y_0_offset, card_graphics_array[47]);
+				//arrow_1.setOrigin(0,0);
+				//arrow_1.angle = 0;
+				//arrow_1.setScale(0.5);
+				//this.add(arrow_1);			
+				
+				
+				const arrow_2 = this.scene.add.image(hex_x[from_hex]+x_90_offset, hex_y[from_hex]+y_90_offset, card_graphics_array[47]);
+				arrow_2.setOrigin(0,0);
+				arrow_2.angle = 90;
+				arrow_2.setScale(0.5);
+				this.add(arrow_2);
+				
+				/*
+				
+				const arrow_3 = this.scene.add.image(button_x[3]+x_180_offset, button_y[3]+y_180_offset, card_graphics_array[47]);
+				arrow_3.setOrigin(0,0);
+				arrow_3.angle = 180;
+				arrow_3.setScale(0.5);
+				this.add(arrow_3);
+
+				const arrow_4 = this.scene.add.image(button_x[3]+x_270_offset, button_y[3]+y_270_offset, card_graphics_array[47]);
+				arrow_4.setOrigin(0,0);
+				arrow_4.angle = 270;
+				arrow_4.setScale(0.5);
+				this.add(arrow_4);
+				*/
+				
+				instruct_x = 100;
+				instruct_y = 100;//+Math.floor(Math.random()*100);
+				
+				const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[48]).setInteractive();
+				box.setOrigin(0,0);
+				box.setScale(0.5);
+				this.add(box);
+				box.on('pointerdown', () => {this.clickMe(scene);});
+				box.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+
+				demo_instructions_text ="This is a naval combat simulation game.  The first thing you need to do is learn how to move your ships.  Click on the hex with a blue pentagon at the top.";
+
+				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_instructions.setOrigin(0,0);
+				demo_instructions.on('pointerdown', () => {this.clickMe(scene);});
+				demo_instructions.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+				this.add(demo_instructions);
+				
+				demo_next_step_text = "Click on the hex next to the arrow";
+				const demo_next_step = this.scene.add.text(instruct_x+20, instruct_y+145, demo_next_step_text, { fontSize: 'bold 24px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_next_step.setOrigin(0,0);
+				demo_next_step.on('pointerdown', () => {this.clickMe(scene);});
+				demo_next_step.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});		
+				this.add(demo_next_step);
+			
+				//step=step+1;
+				
+				this.scene.add.existing(this);
+				this.depth = 91;
+				
+				
+			}
+		}
+		else if(step == 3)
+		{
+			if(unit_no == move_unit)
+			{
+				
+				phase = 9;
+				
+				//const arrow_1 = this.scene.add.image(hex_x[150]+x_0_offset, hex_y[150]+y_0_offset, card_graphics_array[47]);
+				//arrow_1.setOrigin(0,0);
+				//arrow_1.angle = 0;
+				//arrow_1.setScale(0.5);
+				//this.add(arrow_1);			
+				
+				
+				const arrow_2 = this.scene.add.image(hex_x[to_hex]+x_90_offset, hex_y[to_hex]+y_90_offset, card_graphics_array[47]);
+				arrow_2.setOrigin(0,0);
+				arrow_2.angle = 90;
+				arrow_2.setScale(0.5);
+				this.add(arrow_2);
+				
+				/*
+				
+				const arrow_3 = this.scene.add.image(button_x[3]+x_180_offset, button_y[3]+y_180_offset, card_graphics_array[47]);
+				arrow_3.setOrigin(0,0);
+				arrow_3.angle = 180;
+				arrow_3.setScale(0.5);
+				this.add(arrow_3);
+
+				const arrow_4 = this.scene.add.image(button_x[3]+x_270_offset, button_y[3]+y_270_offset, card_graphics_array[47]);
+				arrow_4.setOrigin(0,0);
+				arrow_4.angle = 270;
+				arrow_4.setScale(0.5);
+				this.add(arrow_4);
+				*/
+				
+				instruct_x = 150;
+				instruct_y = 150;//+Math.floor(Math.random()*100);
+				
+				const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[48]).setInteractive();
+				box.setOrigin(0,0);
+				box.setScale(0.5);
+				this.add(box);
+				box.on('pointerdown', () => {this.clickMe(scene);});
+				box.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+
+				demo_instructions_text ="Good.  Now lets move this destroyer to a new hex by clicking on a hex highlighted with a yellow border.  .";
+
+				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_instructions.setOrigin(0,0);
+				demo_instructions.on('pointerdown', () => {this.clickMe(scene);});
+				demo_instructions.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+				this.add(demo_instructions);
+				
+				demo_next_step_text = "Click on the hex next to the arrow";
+				const demo_next_step = this.scene.add.text(instruct_x+20, instruct_y+145, demo_next_step_text, { fontSize: 'bold 24px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_next_step.setOrigin(0,0);
+				demo_next_step.on('pointerdown', () => {this.clickMe(scene);});
+				demo_next_step.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});		
+				this.add(demo_next_step);
+			
+				step=step+1;
+				
+				this.scene.add.existing(this);
+				this.depth = 91;
+
+				
+			}
+			else 
+			{
+				phase = 9;
+				
+				//const arrow_1 = this.scene.add.image(hex_x[150]+x_0_offset, hex_y[150]+y_0_offset, card_graphics_array[47]);
+				//arrow_1.setOrigin(0,0);
+				//arrow_1.angle = 0;
+				//arrow_1.setScale(0.5);
+				//this.add(arrow_1);			
+				
+				
+				const arrow_2 = this.scene.add.image(units_x[move_unit]+x_90_offset+30, units_y[move_unit]+y_90_offset+30, card_graphics_array[47]);
+				arrow_2.setOrigin(0,0);
+				arrow_2.angle = 90;
+				arrow_2.setScale(0.5);
+				this.add(arrow_2);
+				
+				/*
+				
+				const arrow_3 = this.scene.add.image(button_x[3]+x_180_offset, button_y[3]+y_180_offset, card_graphics_array[47]);
+				arrow_3.setOrigin(0,0);
+				arrow_3.angle = 180;
+				arrow_3.setScale(0.5);
+				this.add(arrow_3);
+
+				const arrow_4 = this.scene.add.image(button_x[3]+x_270_offset, button_y[3]+y_270_offset, card_graphics_array[47]);
+				arrow_4.setOrigin(0,0);
+				arrow_4.angle = 270;
+				arrow_4.setScale(0.5);
+				this.add(arrow_4);
+				*/
+				
+				instruct_x = 100;
+				instruct_y = 250;//+Math.floor(Math.random()*100);
+				
+				const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[48]).setInteractive();
+				box.setOrigin(0,0);
+				box.setScale(0.5);
+				this.add(box);
+				box.on('pointerdown', () => {this.clickMe(scene);});
+				box.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+
+				demo_instructions_text ="Now, you need to pick a unit to move.  Let's pick a destroyer icon at the bottom of the map.";
+
+				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_instructions.setOrigin(0,0);
+				demo_instructions.on('pointerdown', () => {this.clickMe(scene);});
+				demo_instructions.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+				this.add(demo_instructions);
+				
+				demo_next_step_text = "Click on the box next to the arrow";
+				const demo_next_step = this.scene.add.text(instruct_x+20, instruct_y+145, demo_next_step_text, { fontSize: 'bold 24px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_next_step.setOrigin(0,0);
+				demo_next_step.on('pointerdown', () => {this.clickMe(scene);});
+				demo_next_step.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});		
+				this.add(demo_next_step);
+			
+				//step=step+1;
+				
+				this.scene.add.existing(this);
+				this.depth = 91;
+				
+				
+			}
+		}
+		else if(step == 4)
+		{
+			if(to_hex == hex_no)
+			{
+				
+				phase = 9;
+				
+				//const arrow_1 = this.scene.add.image(hex_x[150]+x_0_offset, hex_y[150]+y_0_offset, card_graphics_array[47]);
+				//arrow_1.setOrigin(0,0);
+				//arrow_1.angle = 0;
+				//arrow_1.setScale(0.5);
+				//this.add(arrow_1);			
+
+				const arrow_1 = this.scene.add.image(units_x[move_unit]+x_90_offset+30, units_y[move_unit]+y_90_offset+30, card_graphics_array[47]);
+				arrow_1.setOrigin(0,0);
+				arrow_1.angle = 90;
+				arrow_1.setScale(0.5);
+				this.add(arrow_1);
+
+				
+				
+				const arrow_2 = this.scene.add.image(hex_x[to_hex]+x_90_offset, hex_y[to_hex]+y_90_offset, card_graphics_array[47]);
+				arrow_2.setOrigin(0,0);
+				arrow_2.angle = 90;
+				arrow_2.setScale(0.5);
+				this.add(arrow_2);
+				
+				/*
+				
+				const arrow_3 = this.scene.add.image(button_x[3]+x_180_offset, button_y[3]+y_180_offset, card_graphics_array[47]);
+				arrow_3.setOrigin(0,0);
+				arrow_3.angle = 180;
+				arrow_3.setScale(0.5);
+				this.add(arrow_3);
+
+				const arrow_4 = this.scene.add.image(button_x[3]+x_270_offset, button_y[3]+y_270_offset, card_graphics_array[47]);
+				arrow_4.setOrigin(0,0);
+				arrow_4.angle = 270;
+				arrow_4.setScale(0.5);
+				this.add(arrow_4);
+				*/
+				
+				instruct_x = 150;
+				instruct_y = 150;//+Math.floor(Math.random()*100);
+				
+				const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[48]).setInteractive();
+				box.setOrigin(0,0);
+				box.setScale(0.5);
+				this.add(box);
+				box.on('pointerdown', () => {this.clickMe(scene);});
+				box.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+
+				demo_instructions_text ="Outstanding!  You just moved one of your destroyers to a new hex.";
+
+				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_instructions.setOrigin(0,0);
+				demo_instructions.on('pointerdown', () => {this.clickMe(scene);});
+				demo_instructions.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+				this.add(demo_instructions);
+				
+				demo_next_step_text = "Click on this box to continue";
+				const demo_next_step = this.scene.add.text(instruct_x+20, instruct_y+145, demo_next_step_text, { fontSize: 'bold 24px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_next_step.setOrigin(0,0);
+				demo_next_step.on('pointerdown', () => {this.clickMe(scene);});
+				demo_next_step.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});		
+				this.add(demo_next_step);
+			
+				step=step+1;
+				
+				this.scene.add.existing(this);
+				this.depth = 91;
+
+				
+			}
+			else 
+			{
+				phase = 9;
+				
+				//const arrow_1 = this.scene.add.image(hex_x[150]+x_0_offset, hex_y[150]+y_0_offset, card_graphics_array[47]);
+				//arrow_1.setOrigin(0,0);
+				//arrow_1.angle = 0;
+				//arrow_1.setScale(0.5);
+				//this.add(arrow_1);			
+				
+				
+				const arrow_2 = this.scene.add.image(hex_x[to_hex]+x_90_offset, hex_y[to_hex]+y_90_offset, card_graphics_array[47]);
+				arrow_2.setOrigin(0,0);
+				arrow_2.angle = 90;
+				arrow_2.setScale(0.5);
+				this.add(arrow_2);
+				
+				/*
+				
+				const arrow_3 = this.scene.add.image(button_x[3]+x_180_offset, button_y[3]+y_180_offset, card_graphics_array[47]);
+				arrow_3.setOrigin(0,0);
+				arrow_3.angle = 180;
+				arrow_3.setScale(0.5);
+				this.add(arrow_3);
+
+				const arrow_4 = this.scene.add.image(button_x[3]+x_270_offset, button_y[3]+y_270_offset, card_graphics_array[47]);
+				arrow_4.setOrigin(0,0);
+				arrow_4.angle = 270;
+				arrow_4.setScale(0.5);
+				this.add(arrow_4);
+				*/
+				
+				instruct_x = 150;
+				instruct_y = 150;//+Math.floor(Math.random()*100);
+				
+				const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[48]).setInteractive();
+				box.setOrigin(0,0);
+				box.setScale(0.5);
+				this.add(box);
+				box.on('pointerdown', () => {this.clickMe(scene);});
+				box.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+
+				demo_instructions_text ="Good.  Now lets move this destroyer to a new hex by clicking on a hex highlighted with a yellow border.  .";
+
+				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_instructions.setOrigin(0,0);
+				demo_instructions.on('pointerdown', () => {this.clickMe(scene);});
+				demo_instructions.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+				this.add(demo_instructions);
+				
+				demo_next_step_text = "Click on the hex next to the arrow";
+				const demo_next_step = this.scene.add.text(instruct_x+20, instruct_y+145, demo_next_step_text, { fontSize: 'bold 24px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_next_step.setOrigin(0,0);
+				demo_next_step.on('pointerdown', () => {this.clickMe(scene);});
+				demo_next_step.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});		
+				this.add(demo_next_step);
+			
+				//step=step+1;
+				
+				this.scene.add.existing(this);
+				this.depth = 91;
+				
+				
+			}
+		}
+		else if(step == 5)
+		{
+				phase = 9;
+				
+				//const arrow_1 = this.scene.add.image(hex_x[150]+x_0_offset, hex_y[150]+y_0_offset, card_graphics_array[47]);
+				//arrow_1.setOrigin(0,0);
+				//arrow_1.angle = 0;
+				//arrow_1.setScale(0.5);
+				//this.add(arrow_1);			
+
+				const arrow_1 = this.scene.add.image(button_x[0]+x_90_offset+30, button_y[0]+y_90_offset+30, card_graphics_array[47]);
+				arrow_1.setOrigin(0,0);
+				arrow_1.angle = 90;
+				arrow_1.setScale(0.5);
+				this.add(arrow_1);
+
+				
+				/*
+				const arrow_2 = this.scene.add.image(hex_x[to_hex]+x_90_offset, hex_y[to_hex]+y_90_offset, card_graphics_array[47]);
+				arrow_2.setOrigin(0,0);
+				arrow_2.angle = 90;
+				arrow_2.setScale(0.5);
+				this.add(arrow_2);
+				
+				
+				
+				const arrow_3 = this.scene.add.image(button_x[3]+x_180_offset, button_y[3]+y_180_offset, card_graphics_array[47]);
+				arrow_3.setOrigin(0,0);
+				arrow_3.angle = 180;
+				arrow_3.setScale(0.5);
+				this.add(arrow_3);
+
+				const arrow_4 = this.scene.add.image(button_x[3]+x_270_offset, button_y[3]+y_270_offset, card_graphics_array[47]);
+				arrow_4.setOrigin(0,0);
+				arrow_4.angle = 270;
+				arrow_4.setScale(0.5);
+				this.add(arrow_4);
+				*/
+				
+				instruct_x = 150;
+				instruct_y = 225;//+Math.floor(Math.random()*100);
+				
+				const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[48]).setInteractive();
+				box.setOrigin(0,0);
+				box.setScale(0.5);
+				this.add(box);
+				box.on('pointerdown', () => {this.clickMe(scene);});
+				box.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+
+				demo_instructions_text ="Let's end the movement phase and start the combat phase by pressing the END PHASE button.";
+
+				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_instructions.setOrigin(0,0);
+				demo_instructions.on('pointerdown', () => {this.clickMe(scene);});
+				demo_instructions.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+				this.add(demo_instructions);
+				
+				demo_next_step_text = "Press the END PHASE button";
+				const demo_next_step = this.scene.add.text(instruct_x+20, instruct_y+145, demo_next_step_text, { fontSize: 'bold 24px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_next_step.setOrigin(0,0);
+				demo_next_step.on('pointerdown', () => {this.clickMe(scene);});
+				demo_next_step.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});		
+				this.add(demo_next_step);
+			
+				step=step+1;
+				
+				this.scene.add.existing(this);
+				this.depth = 91;			
+		}
+		else if(step == 6)
+		{
+			if(button_no == 0)
+			{
+				
+				phase = 9;
+				
+				//const arrow_1 = this.scene.add.image(hex_x[150]+x_0_offset, hex_y[150]+y_0_offset, card_graphics_array[47]);
+				//arrow_1.setOrigin(0,0);
+				//arrow_1.angle = 0;
+				//arrow_1.setScale(0.5);
+				//this.add(arrow_1);			
+
+				const arrow_1 = this.scene.add.image(card_x[0]+x_270_offset, card_y[0]+y_270_offset, card_graphics_array[47]);
+				arrow_1.setOrigin(0,0);
+				arrow_1.angle = 270;
+				arrow_1.setScale(0.5);
+				this.add(arrow_1);
+
+				
+				
+				const arrow_2 = this.scene.add.image(card_x[1]+x_270_offset, card_y[1]+y_270_offset, card_graphics_array[47]);
+				arrow_2.setOrigin(0,0);
+				arrow_2.angle = 270;
+				arrow_2.setScale(0.5);
+				this.add(arrow_2);
+				
+				
+				
+				const arrow_3 = this.scene.add.image(card_x[2]+x_270_offset, card_y[2]+y_270_offset, card_graphics_array[47]);
+				arrow_3.setOrigin(0,0);
+				arrow_3.angle = 270;
+				arrow_3.setScale(0.5);
+				this.add(arrow_3);
+
+				const arrow_4 = this.scene.add.image(card_x[3]+x_270_offset, card_y[3]+y_270_offset, card_graphics_array[47]);
+				arrow_4.setOrigin(0,0);
+				arrow_4.angle = 270;
+				arrow_4.setScale(0.5);
+				this.add(arrow_4);
+				
+				
+				instruct_x = 50;
+				instruct_y = 75;//+Math.floor(Math.random()*100);
+				
+				const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[48]).setInteractive();
+				box.setOrigin(0,0);
+				box.setScale(0.5);
+				this.add(box);
+				box.on('pointerdown', () => {this.clickMe(scene);});
+				box.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+
+				demo_instructions_text ="Now it is time to play your attack cards, located at the bottom of the screen.  These cards represent the weapons that your ships and aircraft can fire.  You and your opponent take turns playing these cards until both of you pass. ";
+
+				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_instructions.setOrigin(0,0);
+				demo_instructions.on('pointerdown', () => {this.clickMe(scene);});
+				demo_instructions.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+				this.add(demo_instructions);
+				
+				demo_next_step_text = "Click on this box to continue";
+				const demo_next_step = this.scene.add.text(instruct_x+20, instruct_y+145, demo_next_step_text, { fontSize: 'bold 24px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_next_step.setOrigin(0,0);
+				demo_next_step.on('pointerdown', () => {this.clickMe(scene);});
+				demo_next_step.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});		
+				this.add(demo_next_step);
+			
+				step=step+1;
+				
+				this.scene.add.existing(this);
+				this.depth = 91;
+
+				
+			}
+			else 
+			{
+				phase = 9;
+				
+				//const arrow_1 = this.scene.add.image(hex_x[150]+x_0_offset, hex_y[150]+y_0_offset, card_graphics_array[47]);
+				//arrow_1.setOrigin(0,0);
+				//arrow_1.angle = 0;
+				//arrow_1.setScale(0.5);
+				//this.add(arrow_1);			
+
+				const arrow_1 = this.scene.add.image(button_x[0]+x_90_offset+30, button_y[0]+y_90_offset+30, card_graphics_array[47]);
+				arrow_1.setOrigin(0,0);
+				arrow_1.angle = 90;
+				arrow_1.setScale(0.5);
+				this.add(arrow_1);
+
+				
+				/*
+				const arrow_2 = this.scene.add.image(hex_x[to_hex]+x_90_offset, hex_y[to_hex]+y_90_offset, card_graphics_array[47]);
+				arrow_2.setOrigin(0,0);
+				arrow_2.angle = 90;
+				arrow_2.setScale(0.5);
+				this.add(arrow_2);
+				
+				
+				
+				const arrow_3 = this.scene.add.image(button_x[3]+x_180_offset, button_y[3]+y_180_offset, card_graphics_array[47]);
+				arrow_3.setOrigin(0,0);
+				arrow_3.angle = 180;
+				arrow_3.setScale(0.5);
+				this.add(arrow_3);
+
+				const arrow_4 = this.scene.add.image(button_x[3]+x_270_offset, button_y[3]+y_270_offset, card_graphics_array[47]);
+				arrow_4.setOrigin(0,0);
+				arrow_4.angle = 270;
+				arrow_4.setScale(0.5);
+				this.add(arrow_4);
+				*/
+				
+				instruct_x = 150;
+				instruct_y = 225;//+Math.floor(Math.random()*100);
+				
+				const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[48]).setInteractive();
+				box.setOrigin(0,0);
+				box.setScale(0.5);
+				this.add(box);
+				box.on('pointerdown', () => {this.clickMe(scene);});
+				box.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+
+				demo_instructions_text ="Let's end the movement phase and start the combat phase by pressing the END PHASE button.";
+
+				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_instructions.setOrigin(0,0);
+				demo_instructions.on('pointerdown', () => {this.clickMe(scene);});
+				demo_instructions.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+				this.add(demo_instructions);
+				
+				demo_next_step_text = "Press the END PHASE button";
+				const demo_next_step = this.scene.add.text(instruct_x+20, instruct_y+145, demo_next_step_text, { fontSize: 'bold 24px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_next_step.setOrigin(0,0);
+				demo_next_step.on('pointerdown', () => {this.clickMe(scene);});
+				demo_next_step.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});		
+				this.add(demo_next_step);			
+				//step=step+1;
+				
+				this.scene.add.existing(this);
+				this.depth = 91;
+				
+				
+			}
+		}
+		else if(step == 7)
+		{
+				phase = 9;
+				
+				//const arrow_1 = this.scene.add.image(hex_x[150]+x_0_offset, hex_y[150]+y_0_offset, card_graphics_array[47]);
+				//arrow_1.setOrigin(0,0);
+				//arrow_1.angle = 0;
+				//arrow_1.setScale(0.5);
+				//this.add(arrow_1);			
+
+				const arrow_1 = this.scene.add.image(button_x[2]+x_90_offset+30, button_y[2]+y_90_offset+30, card_graphics_array[47]);
+				arrow_1.setOrigin(0,0);
+				arrow_1.angle = 90;
+				arrow_1.setScale(0.5);
+				this.add(arrow_1);
+
+				
+				/*
+				const arrow_2 = this.scene.add.image(hex_x[to_hex]+x_90_offset, hex_y[to_hex]+y_90_offset, card_graphics_array[47]);
+				arrow_2.setOrigin(0,0);
+				arrow_2.angle = 90;
+				arrow_2.setScale(0.5);
+				this.add(arrow_2);
+				
+				
+				
+				const arrow_3 = this.scene.add.image(button_x[3]+x_180_offset, button_y[3]+y_180_offset, card_graphics_array[47]);
+				arrow_3.setOrigin(0,0);
+				arrow_3.angle = 180;
+				arrow_3.setScale(0.5);
+				this.add(arrow_3);
+
+				const arrow_4 = this.scene.add.image(button_x[3]+x_270_offset, button_y[3]+y_270_offset, card_graphics_array[47]);
+				arrow_4.setOrigin(0,0);
+				arrow_4.angle = 270;
+				arrow_4.setScale(0.5);
+				this.add(arrow_4);
+				*/
+				
+				instruct_x = 150;
+				instruct_y = 225;//+Math.floor(Math.random()*100);
+				
+				const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[48]).setInteractive();
+				box.setOrigin(0,0);
+				box.setScale(0.5);
+				this.add(box);
+				box.on('pointerdown', () => {this.clickMe(scene);});
+				box.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+
+				demo_instructions_text ="You can only target enemy units that you have detected.  Detection is handled automatically in this game.  The colored boxes on each unit represent that unit's capabilities, including its ability to detect enemy units.  You can read more about sensors and detection in the GAME KEY.";
+
+				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_instructions.setOrigin(0,0);
+				demo_instructions.on('pointerdown', () => {this.clickMe(scene);});
+				demo_instructions.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+				this.add(demo_instructions);
+				
+				demo_next_step_text = "Click on this box to continue";
+				const demo_next_step = this.scene.add.text(instruct_x+20, instruct_y+145, demo_next_step_text, { fontSize: 'bold 24px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_next_step.setOrigin(0,0);
+				demo_next_step.on('pointerdown', () => {this.clickMe(scene);});
+				demo_next_step.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});		
+				this.add(demo_next_step);
+			
+				step=step+1;
+				
+				this.scene.add.existing(this);
+				this.depth = 91;			
+		}
+		else if(step == 8)
+		{
+				phase = 9;
+				
+				//const arrow_1 = this.scene.add.image(hex_x[150]+x_0_offset, hex_y[150]+y_0_offset, card_graphics_array[47]);
+				//arrow_1.setOrigin(0,0);
+				//arrow_1.angle = 0;
+				//arrow_1.setScale(0.5);
+				//this.add(arrow_1);			
+
+				const arrow_1 = this.scene.add.image(hex_x[177]+x_270_offset, hex_y[177]+y_270_offset, card_graphics_array[47]);
+				arrow_1.setOrigin(0,0);
+				arrow_1.angle = 270;
+				arrow_1.setScale(0.5);
+				this.add(arrow_1);
+
+				
+				/*
+				const arrow_2 = this.scene.add.image(hex_x[to_hex]+x_90_offset, hex_y[to_hex]+y_90_offset, card_graphics_array[47]);
+				arrow_2.setOrigin(0,0);
+				arrow_2.angle = 90;
+				arrow_2.setScale(0.5);
+				this.add(arrow_2);
+				
+				
+				
+				const arrow_3 = this.scene.add.image(button_x[3]+x_180_offset, button_y[3]+y_180_offset, card_graphics_array[47]);
+				arrow_3.setOrigin(0,0);
+				arrow_3.angle = 180;
+				arrow_3.setScale(0.5);
+				this.add(arrow_3);
+
+				const arrow_4 = this.scene.add.image(button_x[3]+x_270_offset, button_y[3]+y_270_offset, card_graphics_array[47]);
+				arrow_4.setOrigin(0,0);
+				arrow_4.angle = 270;
+				arrow_4.setScale(0.5);
+				this.add(arrow_4);
+				*/
+				
+				instruct_x = 175;
+				instruct_y = 150;//+Math.floor(Math.random()*100);
+				
+				const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[48]).setInteractive();
+				box.setOrigin(0,0);
+				box.setScale(0.5);
+				this.add(box);
+				box.on('pointerdown', () => {this.clickMe(scene);});
+				box.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+
+				demo_instructions_text ="This hex, with a yellow polygon, contains an enemy unit that you have detected, and can target with one of your weapon cards.";
+
+				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_instructions.setOrigin(0,0);
+				demo_instructions.on('pointerdown', () => {this.clickMe(scene);});
+				demo_instructions.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+				this.add(demo_instructions);
+				
+				demo_next_step_text = "Click on this box to continue";
+				const demo_next_step = this.scene.add.text(instruct_x+20, instruct_y+145, demo_next_step_text, { fontSize: 'bold 24px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_next_step.setOrigin(0,0);
+				demo_next_step.on('pointerdown', () => {this.clickMe(scene);});
+				demo_next_step.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});		
+				this.add(demo_next_step);
+			
+				step=step+1;
+				
+				this.scene.add.existing(this);
+				this.depth = 91;			
+		}
+		else if(step == 9)
+		{
+				phase = 9;
+				
+				//const arrow_1 = this.scene.add.image(hex_x[150]+x_0_offset, hex_y[150]+y_0_offset, card_graphics_array[47]);
+				//arrow_1.setOrigin(0,0);
+				//arrow_1.angle = 0;
+				//arrow_1.setScale(0.5);
+				//this.add(arrow_1);			
+
+				const arrow_1 = this.scene.add.image(hex_x[176]+x_270_offset, hex_y[176]+y_270_offset, card_graphics_array[47]);
+				arrow_1.setOrigin(0,0);
+				arrow_1.angle = 270;
+				arrow_1.setScale(0.5);
+				this.add(arrow_1);
+
+				
+				/*
+				const arrow_2 = this.scene.add.image(hex_x[to_hex]+x_90_offset, hex_y[to_hex]+y_90_offset, card_graphics_array[47]);
+				arrow_2.setOrigin(0,0);
+				arrow_2.angle = 90;
+				arrow_2.setScale(0.5);
+				this.add(arrow_2);
+				
+				
+				
+				const arrow_3 = this.scene.add.image(button_x[3]+x_180_offset, button_y[3]+y_180_offset, card_graphics_array[47]);
+				arrow_3.setOrigin(0,0);
+				arrow_3.angle = 180;
+				arrow_3.setScale(0.5);
+				this.add(arrow_3);
+
+				const arrow_4 = this.scene.add.image(button_x[3]+x_270_offset, button_y[3]+y_270_offset, card_graphics_array[47]);
+				arrow_4.setOrigin(0,0);
+				arrow_4.angle = 270;
+				arrow_4.setScale(0.5);
+				this.add(arrow_4);
+				*/
+				
+				instruct_x = 185;
+				instruct_y = 200;//+Math.floor(Math.random()*100);
+				
+				const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[48]).setInteractive();
+				box.setOrigin(0,0);
+				box.setScale(0.5);
+				this.add(box);
+				box.on('pointerdown', () => {this.clickMe(scene);});
+				box.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+
+				demo_instructions_text ="Of course, enemy units can also detect you.  The hexes with an orange tint are hexes that are within sensor range of a detected enemy unit.  To avoid detection, avoid these hexes.  Of course, enemy units that you have not detected can still detect and hit your units, so watch out!";
+
+				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_instructions.setOrigin(0,0);
+				demo_instructions.on('pointerdown', () => {this.clickMe(scene);});
+				demo_instructions.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+				this.add(demo_instructions);
+				
+				demo_next_step_text = "Click on this box to continue";
+				const demo_next_step = this.scene.add.text(instruct_x+20, instruct_y+145, demo_next_step_text, { fontSize: 'bold 24px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_next_step.setOrigin(0,0);
+				demo_next_step.on('pointerdown', () => {this.clickMe(scene);});
+				demo_next_step.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});		
+				this.add(demo_next_step);
+			
+				step=step+1;
+				
+				this.scene.add.existing(this);
+				this.depth = 91;			
+		}
+		else if(step == 10)
+		{
+				phase = 9;
+				
+				//const arrow_1 = this.scene.add.image(hex_x[150]+x_0_offset, hex_y[150]+y_0_offset, card_graphics_array[47]);
+				//arrow_1.setOrigin(0,0);
+				//arrow_1.angle = 0;
+				//arrow_1.setScale(0.5);
+				//this.add(arrow_1);			
+
+				const arrow_1 = this.scene.add.image(card_button_right_x[play_card]+x_270_offset, card_button_right_y[play_card]+y_270_offset, card_graphics_array[47]);
+				arrow_1.setOrigin(0,0);
+				arrow_1.angle = 270;
+				arrow_1.setScale(0.5);
+				this.add(arrow_1);
+
+				
+				/*
+				const arrow_2 = this.scene.add.image(hex_x[to_hex]+x_90_offset, hex_y[to_hex]+y_90_offset, card_graphics_array[47]);
+				arrow_2.setOrigin(0,0);
+				arrow_2.angle = 90;
+				arrow_2.setScale(0.5);
+				this.add(arrow_2);
+				
+				
+				
+				const arrow_3 = this.scene.add.image(button_x[3]+x_180_offset, button_y[3]+y_180_offset, card_graphics_array[47]);
+				arrow_3.setOrigin(0,0);
+				arrow_3.angle = 180;
+				arrow_3.setScale(0.5);
+				this.add(arrow_3);
+
+				const arrow_4 = this.scene.add.image(button_x[3]+x_270_offset, button_y[3]+y_270_offset, card_graphics_array[47]);
+				arrow_4.setOrigin(0,0);
+				arrow_4.angle = 270;
+				arrow_4.setScale(0.5);
+				this.add(arrow_4);
+				*/
+				
+				instruct_x = 50;
+				instruct_y = 300;//+Math.floor(Math.random()*100);
+				
+				const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[48]).setInteractive();
+				box.setOrigin(0,0);
+				box.setScale(0.5);
+				this.add(box);
+				box.on('pointerdown', () => {this.clickMe(scene);});
+				box.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+
+				demo_instructions_text ="Let's play one of your weapons cards.  The COMP VIRUS card will temporarily disable the (A)irborne Early Warning Radar capability of an enemy unit, blinding the unit for the rest of the turn.  Go ahead and press the card's PLAY button.";
+
+				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_instructions.setOrigin(0,0);
+				demo_instructions.on('pointerdown', () => {this.clickMe(scene);});
+				demo_instructions.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+				this.add(demo_instructions);
+				
+				demo_next_step_text = "Click on PLAY button next to the arrow";
+				const demo_next_step = this.scene.add.text(instruct_x+20, instruct_y+145, demo_next_step_text, { fontSize: 'bold 24px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_next_step.setOrigin(0,0);
+				demo_next_step.on('pointerdown', () => {this.clickMe(scene);});
+				demo_next_step.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});		
+				this.add(demo_next_step);
+			
+				step=step+1;
+				
+				this.scene.add.existing(this);
+				this.depth = 91;			
+		}
+		else if(step == 11)
+		{
+			if(card_location == play_card)
+			{
+				
+				phase = 9;
+				
+				//const arrow_1 = this.scene.add.image(hex_x[150]+x_0_offset, hex_y[150]+y_0_offset, card_graphics_array[47]);
+				//arrow_1.setOrigin(0,0);
+				//arrow_1.angle = 0;
+				//arrow_1.setScale(0.5);
+				//this.add(arrow_1);			
+
+				const arrow_1 = this.scene.add.image(hex_x[target_hex]+x_270_offset, hex_y[target_hex]+y_270_offset, card_graphics_array[47]);
+				arrow_1.setOrigin(0,0);
+				arrow_1.angle = 270;
+				arrow_1.setScale(0.5);
+				this.add(arrow_1);
+
+				
+				
+				//const arrow_2 = this.scene.add.image(card_x[1]+x_270_offset, card_y[1]+y_270_offset, card_graphics_array[47]);
+				//arrow_2.setOrigin(0,0);
+				//arrow_2.angle = 270;
+				//arrow_2.setScale(0.5);
+				//this.add(arrow_2);
+				
+				
+				
+				//const arrow_3 = this.scene.add.image(card_x[2]+x_270_offset, card_y[2]+y_270_offset, card_graphics_array[47]);
+				//arrow_3.setOrigin(0,0);
+				//arrow_3.angle = 270;
+				//arrow_3.setScale(0.5);
+				//this.add(arrow_3);
+
+				//const arrow_4 = this.scene.add.image(card_x[3]+x_270_offset, card_y[3]+y_270_offset, card_graphics_array[47]);
+				//arrow_4.setOrigin(0,0);
+				//arrow_4.angle = 270;
+				//arrow_4.setScale(0.5);
+				//this.add(arrow_4);
+				
+				
+				instruct_x = 150;
+				instruct_y = 250;//+Math.floor(Math.random()*100);
+				
+				const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[48]).setInteractive();
+				box.setOrigin(0,0);
+				box.setScale(0.5);
+				this.add(box);
+				box.on('pointerdown', () => {this.clickMe(scene);});
+				box.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+
+				demo_instructions_text ="Now click on the hex with the light blue border to select it as your target.";
+
+				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_instructions.setOrigin(0,0);
+				demo_instructions.on('pointerdown', () => {this.clickMe(scene);});
+				demo_instructions.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+				this.add(demo_instructions);
+				
+				demo_next_step_text = "Click on the hex next to the arrow";
+				const demo_next_step = this.scene.add.text(instruct_x+20, instruct_y+145, demo_next_step_text, { fontSize: 'bold 24px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_next_step.setOrigin(0,0);
+				demo_next_step.on('pointerdown', () => {this.clickMe(scene);});
+				demo_next_step.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});		
+				this.add(demo_next_step);
+			
+				step=step+1;
+				
+				this.scene.add.existing(this);
+				this.depth = 91;
+
+				
+			}
+			else 
+			{
+				phase = 9;
+				
+				//const arrow_1 = this.scene.add.image(hex_x[150]+x_0_offset, hex_y[150]+y_0_offset, card_graphics_array[47]);
+				//arrow_1.setOrigin(0,0);
+				//arrow_1.angle = 0;
+				//arrow_1.setScale(0.5);
+				//this.add(arrow_1);			
+
+				const arrow_1 = this.scene.add.image(card_button_right_x[play_card]+x_270_offset, card_button_right_y[play_card]+y_270_offset, card_graphics_array[47]);
+				arrow_1.setOrigin(0,0);
+				arrow_1.angle = 270;
+				arrow_1.setScale(0.5);
+				this.add(arrow_1);
+
+				
+				/*
+				const arrow_2 = this.scene.add.image(hex_x[to_hex]+x_90_offset, hex_y[to_hex]+y_90_offset, card_graphics_array[47]);
+				arrow_2.setOrigin(0,0);
+				arrow_2.angle = 90;
+				arrow_2.setScale(0.5);
+				this.add(arrow_2);
+				
+				
+				
+				const arrow_3 = this.scene.add.image(button_x[3]+x_180_offset, button_y[3]+y_180_offset, card_graphics_array[47]);
+				arrow_3.setOrigin(0,0);
+				arrow_3.angle = 180;
+				arrow_3.setScale(0.5);
+				this.add(arrow_3);
+
+				const arrow_4 = this.scene.add.image(button_x[3]+x_270_offset, button_y[3]+y_270_offset, card_graphics_array[47]);
+				arrow_4.setOrigin(0,0);
+				arrow_4.angle = 270;
+				arrow_4.setScale(0.5);
+				this.add(arrow_4);
+				*/
+				
+				instruct_x = 50;
+				instruct_y = 300;//+Math.floor(Math.random()*100);
+				
+				const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[48]).setInteractive();
+				box.setOrigin(0,0);
+				box.setScale(0.5);
+				this.add(box);
+				box.on('pointerdown', () => {this.clickMe(scene);});
+				box.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+
+				demo_instructions_text ="Let's play one of your weapons cards.  The COMP VIRUS card will temporarily disable the (A)irborne Early Warning Radar capability of an enemy unit, blinding the unit for the rest of the turn.  Go ahead and press the card's PLAY button.";
+
+				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_instructions.setOrigin(0,0);
+				demo_instructions.on('pointerdown', () => {this.clickMe(scene);});
+				demo_instructions.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+				this.add(demo_instructions);
+				
+				demo_next_step_text = "Click on PLAY button next to the arrow";
+				const demo_next_step = this.scene.add.text(instruct_x+20, instruct_y+145, demo_next_step_text, { fontSize: 'bold 24px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_next_step.setOrigin(0,0);
+				demo_next_step.on('pointerdown', () => {this.clickMe(scene);});
+				demo_next_step.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});		
+				this.add(demo_next_step);
+
+				//step=step+1;
+				
+				this.scene.add.existing(this);
+				this.depth = 91;
+				
+				
+			}
+		}
+		else if(step == 12)
+		{
+			if(target_hex == hex_no)
+			{
+				
+				phase = 9;
+				
+				//const arrow_1 = this.scene.add.image(hex_x[150]+x_0_offset, hex_y[150]+y_0_offset, card_graphics_array[47]);
+				//arrow_1.setOrigin(0,0);
+				//arrow_1.angle = 0;
+				//arrow_1.setScale(0.5);
+				//this.add(arrow_1);			
+
+				const arrow_1 = this.scene.add.image(card_button_right_x[play_card]+x_270_offset, card_button_right_y[play_card]+y_270_offset, card_graphics_array[47]);
+				arrow_1.setOrigin(0,0);
+				arrow_1.angle = 270;
+				arrow_1.setScale(0.5);
+				this.add(arrow_1);
+
+				
+				
+				//const arrow_2 = this.scene.add.image(card_x[1]+x_270_offset, card_y[1]+y_270_offset, card_graphics_array[47]);
+				//arrow_2.setOrigin(0,0);
+				//arrow_2.angle = 270;
+				//arrow_2.setScale(0.5);
+				//this.add(arrow_2);
+				
+				
+				
+				//const arrow_3 = this.scene.add.image(card_x[2]+x_270_offset, card_y[2]+y_270_offset, card_graphics_array[47]);
+				//arrow_3.setOrigin(0,0);
+				//arrow_3.angle = 270;
+				//arrow_3.setScale(0.5);
+				//this.add(arrow_3);
+
+				//const arrow_4 = this.scene.add.image(card_x[3]+x_270_offset, card_y[3]+y_270_offset, card_graphics_array[47]);
+				//arrow_4.setOrigin(0,0);
+				//arrow_4.angle = 270;
+				//arrow_4.setScale(0.5);
+				//this.add(arrow_4);
+				
+				
+				instruct_x = 50;
+				instruct_y = 500;//+Math.floor(Math.random()*100);
+				
+				const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[48]).setInteractive();
+				box.setOrigin(0,0);
+				box.setScale(0.5);
+				this.add(box);
+				box.on('pointerdown', () => {this.clickMe(scene);});
+				box.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+
+				demo_instructions_text ="Now you just need to confirm that you want to target this hex by hitting the confirm button.";
+
+				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_instructions.setOrigin(0,0);
+				demo_instructions.on('pointerdown', () => {this.clickMe(scene);});
+				demo_instructions.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+				this.add(demo_instructions);
+				
+				demo_next_step_text = "Click on CONF. button next to the arrow";
+				const demo_next_step = this.scene.add.text(instruct_x+20, instruct_y+145, demo_next_step_text, { fontSize: 'bold 24px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_next_step.setOrigin(0,0);
+				demo_next_step.on('pointerdown', () => {this.clickMe(scene);});
+				demo_next_step.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});		
+				this.add(demo_next_step);
+			
+				step=step+1;
+				
+				this.scene.add.existing(this);
+				this.depth = 91;
+
+				
+			}
+			else 
+			{
+				phase = 9;
+				
+				//const arrow_1 = this.scene.add.image(hex_x[150]+x_0_offset, hex_y[150]+y_0_offset, card_graphics_array[47]);
+				//arrow_1.setOrigin(0,0);
+				//arrow_1.angle = 0;
+				//arrow_1.setScale(0.5);
+				//this.add(arrow_1);			
+
+				const arrow_1 = this.scene.add.image(hex_x[target_hex]+x_270_offset, hex_y[target_hex]+y_270_offset, card_graphics_array[47]);
+				arrow_1.setOrigin(0,0);
+				arrow_1.angle = 270;
+				arrow_1.setScale(0.5);
+				this.add(arrow_1);
+
+				
+				
+				//const arrow_2 = this.scene.add.image(card_x[1]+x_270_offset, card_y[1]+y_270_offset, card_graphics_array[47]);
+				//arrow_2.setOrigin(0,0);
+				//arrow_2.angle = 270;
+				//arrow_2.setScale(0.5);
+				//this.add(arrow_2);
+				
+				
+				
+				//const arrow_3 = this.scene.add.image(card_x[2]+x_270_offset, card_y[2]+y_270_offset, card_graphics_array[47]);
+				//arrow_3.setOrigin(0,0);
+				//arrow_3.angle = 270;
+				//arrow_3.setScale(0.5);
+				//this.add(arrow_3);
+
+				//const arrow_4 = this.scene.add.image(card_x[3]+x_270_offset, card_y[3]+y_270_offset, card_graphics_array[47]);
+				//arrow_4.setOrigin(0,0);
+				//arrow_4.angle = 270;
+				//arrow_4.setScale(0.5);
+				//this.add(arrow_4);
+				
+				
+				instruct_x = 150;
+				instruct_y = 250;//+Math.floor(Math.random()*100);
+				
+				const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[48]).setInteractive();
+				box.setOrigin(0,0);
+				box.setScale(0.5);
+				this.add(box);
+				box.on('pointerdown', () => {this.clickMe(scene);});
+				box.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+
+				demo_instructions_text ="Now click on the hex with the light blue border to select it as your target.";
+
+				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_instructions.setOrigin(0,0);
+				demo_instructions.on('pointerdown', () => {this.clickMe(scene);});
+				demo_instructions.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+				this.add(demo_instructions);
+				
+				demo_next_step_text = "Click on the hex next to the arrow";
+				const demo_next_step = this.scene.add.text(instruct_x+20, instruct_y+145, demo_next_step_text, { fontSize: 'bold 24px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_next_step.setOrigin(0,0);
+				demo_next_step.on('pointerdown', () => {this.clickMe(scene);});
+				demo_next_step.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});		
+				this.add(demo_next_step);
+				
+				this.scene.add.existing(this);
+				this.depth = 91;
+				
+				
+			}
+		}
+		else if(step == 13)
+		{
+			if(card_location == play_card)
+			{
+				
+				phase = 9;
+				
+				//const arrow_1 = this.scene.add.image(hex_x[150]+x_0_offset, hex_y[150]+y_0_offset, card_graphics_array[47]);
+				//arrow_1.setOrigin(0,0);
+				//arrow_1.angle = 0;
+				//arrow_1.setScale(0.5);
+				//this.add(arrow_1);			
+
+				//const arrow_1 = this.scene.add.image(card_button_right_x[13]+x_270_offset, card_button_right_y[13]+y_270_offset, card_graphics_array[47]);
+				//arrow_1.setOrigin(0,0);
+				//arrow_1.angle = 270;
+				//arrow_1.setScale(0.5);
+				//this.add(arrow_1);
+
+				
+				
+				//const arrow_2 = this.scene.add.image(card_x[1]+x_270_offset, card_y[1]+y_270_offset, card_graphics_array[47]);
+				//arrow_2.setOrigin(0,0);
+				//arrow_2.angle = 270;
+				//arrow_2.setScale(0.5);
+				//this.add(arrow_2);
+				
+				
+				
+				//const arrow_3 = this.scene.add.image(card_x[2]+x_270_offset, card_y[2]+y_270_offset, card_graphics_array[47]);
+				//arrow_3.setOrigin(0,0);
+				//arrow_3.angle = 270;
+				//arrow_3.setScale(0.5);
+				//this.add(arrow_3);
+
+				//const arrow_4 = this.scene.add.image(card_x[3]+x_270_offset, card_y[3]+y_270_offset, card_graphics_array[47]);
+				//arrow_4.setOrigin(0,0);
+				//arrow_4.angle = 270;
+				//arrow_4.setScale(0.5);
+				//this.add(arrow_4);
+				
+				
+				instruct_x = 50;
+				instruct_y = 500;//+Math.floor(Math.random()*100);
+				
+				const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[48]).setInteractive();
+				box.setOrigin(0,0);
+				box.setScale(0.5);
+				this.add(box);
+				box.on('pointerdown', () => {this.clickMe(scene);});
+				box.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+
+				demo_instructions_text ="Nice job!  You've knocked out your enemy's radar for the rest of the turn.  You have now played through a full turn, and you are ready to play the game on your own.  There are always instructions on the top of the screen, and you can always hit a card's INFO button for more information.  Good Luck!";
+
+				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_instructions.setOrigin(0,0);
+				demo_instructions.on('pointerdown', () => {this.clickMe(scene);});
+				demo_instructions.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+				this.add(demo_instructions);
+				
+				demo_next_step_text = "Click on this box to continue";
+				const demo_next_step = this.scene.add.text(instruct_x+20, instruct_y+145, demo_next_step_text, { fontSize: 'bold 24px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_next_step.setOrigin(0,0);
+				demo_next_step.on('pointerdown', () => {this.clickMe(scene);});
+				demo_next_step.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});		
+				this.add(demo_next_step);
+			
+				step=step+1;
+				
+				this.scene.add.existing(this);
+				this.depth = 99;
+
+				
+			}
+			else 
+			{
+				phase = 9;
+				
+				//const arrow_1 = this.scene.add.image(hex_x[150]+x_0_offset, hex_y[150]+y_0_offset, card_graphics_array[47]);
+				//arrow_1.setOrigin(0,0);
+				//arrow_1.angle = 0;
+				//arrow_1.setScale(0.5);
+				//this.add(arrow_1);			
+
+				const arrow_1 = this.scene.add.image(card_button_right_x[play_card]+x_270_offset, card_button_right_y[play_card]+y_270_offset, card_graphics_array[47]);
+				arrow_1.setOrigin(0,0);
+				arrow_1.angle = 270;
+				arrow_1.setScale(0.5);
+				this.add(arrow_1);
+
+				
+				
+				//const arrow_2 = this.scene.add.image(card_x[1]+x_270_offset, card_y[1]+y_270_offset, card_graphics_array[47]);
+				//arrow_2.setOrigin(0,0);
+				//arrow_2.angle = 270;
+				//arrow_2.setScale(0.5);
+				//this.add(arrow_2);
+				
+				
+				
+				//const arrow_3 = this.scene.add.image(card_x[2]+x_270_offset, card_y[2]+y_270_offset, card_graphics_array[47]);
+				//arrow_3.setOrigin(0,0);
+				//arrow_3.angle = 270;
+				//arrow_3.setScale(0.5);
+				//this.add(arrow_3);
+
+				//const arrow_4 = this.scene.add.image(card_x[3]+x_270_offset, card_y[3]+y_270_offset, card_graphics_array[47]);
+				//arrow_4.setOrigin(0,0);
+				//arrow_4.angle = 270;
+				//arrow_4.setScale(0.5);
+				//this.add(arrow_4);
+				
+				
+				instruct_x = 100;
+				instruct_y = 450;//+Math.floor(Math.random()*100);
+				
+				const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[48]).setInteractive();
+				box.setOrigin(0,0);
+				box.setScale(0.5);
+				this.add(box);
+				box.on('pointerdown', () => {this.clickMe(scene);});
+				box.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+
+				demo_instructions_text ="Now you just need to confirm that you want to target this hex by hitting the confirm button.";
+
+				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_instructions.setOrigin(0,0);
+				demo_instructions.on('pointerdown', () => {this.clickMe(scene);});
+				demo_instructions.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});
+				this.add(demo_instructions);
+				
+				demo_next_step_text = "Click on CONF. button next to the arrow";
+				const demo_next_step = this.scene.add.text(instruct_x+20, instruct_y+145, demo_next_step_text, { fontSize: 'bold 24px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_next_step.setOrigin(0,0);
+				demo_next_step.on('pointerdown', () => {this.clickMe(scene);});
+				demo_next_step.on('pointerup', () => {this.unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);});		
+				this.add(demo_next_step);
+
+				
+				this.scene.add.existing(this);
+				this.depth = 91;
+				
+				
+			}
+		}
+		else
+		{
+			phase = 7;
+			step = 0;
+			
+			info_box_array[0].visible = false;
+			info_box_array[1].visible = false;
+			info_box_array[2].visible = false;
+			info_box_array[3].visible = false;
+			info_box_array[4].visible = false;
+			info_box_array[5].visible = false;
+			info_box_array[6].visible = false;
+			info_box_array[7].visible = false;
+			info_box_array[8].visible = false;
+			info_box_array[9].visible = false;
+			info_box_array[10].visible = false;
+			info_box_array[11].visible = false;
+			info_box_array[12].visible = false;
+			info_box_array[13].visible = false;
+			info_box_array[14].visible = false;
+				
+				
+				
+			info_box_title.text = "";
+			info_box_description.text = "";
+			info_box_desc.text = ""
+				
+			for(var y=0; y<1+8+15; y++)
+			{
+				p1_hit_box_array[y].visible = false;
+				//p2_hit_box_array[y].visible = false;
+			}
+				
+			if(phase == 7)
+			{
+				p2_play_hand(this);
+				//update_map(this);
+				unit_visability();	
+			}
+
+			
+			demo_completed = 1;
+			save_demo();
+		}
+		
+
+
+	}
+	
+	clickMe(scene)
+	{
+		this.alpha = 0.3;	
+	}
+	
+	unclickMe(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no)
+	{
+		//if(phase == 9)
+		//{
+			this.alpha = 1;
+			demo_update(scene, step_no, card_location, card_button_no, button_no, hex_no, unit_no);
+		//}
+	}
+
+}	

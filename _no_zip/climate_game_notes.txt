@@ -1,0 +1,78 @@
+You play a trillionair Elon Bloomberg 
+
+You invest in six kinds of organizations across 8 countries
+
+
+Box types
+- political party
+- media outlet
+- corporation
+- NGO
+- university
+- local government
+
+Each row is a country
+- left box has the country's carbon level and
+- the number of institutions needed to control the country and gain access to its resource
+- Resources you get when you control country
+
++3PC <= Carbon Points
+3/5  <= Institutions Controled / Institutions Needed For Control
+# %  <= Nation Symbols
+
+Each row / country has two resources
+- you gain the resource with x numer of agents in a country
+- number of agents needed shown in left most box
+- resource types
+  - Army
+  - Navy
+  - Inteligence Agency
+  - Space Program
+  - Alliance System
+
+Place agents on boxes on the board to control institutions
+- Have a capability level
+- Have a support level
+  - when support reaches 0, you no longer control the institution
+
+Each non-country box has two letter codes
+- Liability
+- Capability
+
+5 actions
+- Add support - not cost
+- Add capabilities - university + corportation
+- Add card to deck - activist + media outlet 
+- Remove card from deck - activist + political party
+- Pick next card - economy + army + intel agency
+
+Carbon reduction
+- card appears: -1 carbon for any country with level x in box type y
+
+Disasters
+- Neutralization boxes deploy when you hit a certain carbon level
+
+Calculate carbon every turn
+- countries can have negative carbon levels via sequestration
+  
+
+Climate Game
+1) Each box has a carbon emmision value (CP value)
+- Add to carbon total when country type color comes up in the deck
+- Can reduce it (or go negative)
+- Cards in deck reduce carbon when tech is above a certain level
+2) Black box represents support
+- lose policial support based on letter codes
+3) Operations points become activist points
+4) Info level becomes tech level
+- Carbon reduction happens in countries with x level of tech
+- -1 CP for each box above 3
+- -2 CP for each box above 6
+- -3 CP for each box equal to 9
+5) Support goes to 0 - but not eliminated
+- Cannot add tech at 0
+- Can add support
+6) agents become activists
+
+
+

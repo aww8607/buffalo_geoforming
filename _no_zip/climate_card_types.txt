@@ -1,0 +1,45 @@
+Card types
+
+Lower carbon by region tech level - card type 1
+- tech level of 4 for agriculture boxes
+- carbon sequestration 4 for industry
+
+Decrease support for charactaristic - card type 2
+
+Storms - card type 3
+
+Add Activist Points - card type 6
+
+Nothing Happens - card typ 7
+
+Geoforming - card type 8
+- Solar shade
+  - need two space programs to add 1 geoforming
+  - Discard after use
+
+Change region type card type 9
+- Agricultur -> vertical farms
+  - 
+- 
+
+Starting deck
+- Card type 2 - decrease support
+- Card type 3 - storms
+- Card type 7 - noting happens
+- Card type 6 - add activists
+
+
+Draw deck
+- Card type 1 - lower carbon (2)
+- Card type 6 - add activists (2)
+- Card type 7 - noting happens (3)
+- Card type 8 - solar shade (6)
+- Card type 9 - change region type (3)
+
+Region codes
+- 
+
+
+
+
+
