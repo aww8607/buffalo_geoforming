@@ -335,7 +335,7 @@ country_name_array[5] = 'India';
 country_name_array[6] = 'South Africa';
 country_name_array[7] = 'Saudi Arabia';
 
-var tester;
+var new_tester;
 
 
 
