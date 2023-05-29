@@ -192,6 +192,11 @@
 		this.load.image(card_graphics_array[graphic_count],'graphics/small_huricane.png');
 		graphic_count=graphic_count+1;
 		
+		//arrest graphic 29 //seawall graphic
+		card_graphics_array[graphic_count]="_"+graphic_count;
+		this.load.image(card_graphics_array[graphic_count],'graphics/seawall.png');
+		graphic_count=graphic_count+1;
+		
     }
 
     function create ()

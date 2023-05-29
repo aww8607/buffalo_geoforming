@@ -59,6 +59,7 @@ var demo_holder;
 var temp_info_holder;
 var carbon_denominator_constant = 400;
 var geoforming_multiplier = 50;
+var mitigation_marker = [];
 
 var menu_button_titles = [];
 menu_button_titles[0] = 'MENU';
@@ -335,7 +336,7 @@ country_name_array[5] = 'India';
 country_name_array[6] = 'South Africa';
 country_name_array[7] = 'Saudi Arabia';
 
-var new_tester;
+
 
 
 

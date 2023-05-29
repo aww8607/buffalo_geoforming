@@ -48,6 +48,12 @@ function agent_init(scene)
 		vp_box_number[n].text = "VVVV";
 		vp_box_number[n].visible = false;
 		
+		mitigation_marker[n] = scene.add.image(0, 0, card_graphics_array[29]);
+		mitigation_marker[n].setOrigin(0,0);
+		mitigation_marker[n].scale = 0.6;
+		mitigation_marker[n].x = 325+15+(n%7)*75+26;
+		mitigation_marker[n].y = 90+15+35+95*Math.floor(n/7)-3;
+		mitigation_marker[n].visible = false;		
 		
 		//code_box_container
 		for(var k = 0; k<no_box_codes; k++)

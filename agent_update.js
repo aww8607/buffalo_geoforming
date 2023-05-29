@@ -8,7 +8,7 @@ function agent_update()
 		stealth_back_box[g].visible = false;
 		vp_box_number[g].visible = false;
 		map_big_police_array[g].visible = false;
-
+		mitigation_marker[g].visible = false;
 
 		info_value[g].alpha = 0.2;
 		info_number_box[g].alpha = 0.2;
@@ -83,8 +83,9 @@ function agent_update()
 		if(vp_map_boxes[w]==1)
 		{
 			//vp_box_number[w].text = vp_map_box_score_array[w]+"VVVV";
-			vp_box_number[w].text = "VVVV";
-			vp_box_number[w].visible = true;
+			//vp_box_number[w].text = "VVVV";
+			//vp_box_number[w].visible = true;
+			mitigation_marker[w].visible = true;
 		}
 		else if(red_police_array[w] == 1)
 		{
