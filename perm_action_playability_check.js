@@ -205,7 +205,7 @@ function perm_action_playability_check()
 			{
 				for(var d=0; d<56; d++)
 				{
-					if(agent_present[d]==1 && info_value[d] < 9)
+					if(agent_present[d]==1 && info_value[d] < 9 && diplomacy_points > 0)
 					{
 						menu_buttons[5+k].visible = true;	
 					}

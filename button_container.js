@@ -203,7 +203,6 @@ class button_container extends Phaser.GameObjects.Container
 				diplomacy_point_text.text = diplomacy_points+agent_name_text;
 				military_point_text.text = military_points+carbon_text;
 
-
 				
 				instruction_box.text = "Turn "+turn+"/"+max_turn+" - Pick an agent with a red border and increase its support level.";			
 			}

@@ -500,7 +500,7 @@ class menu_back_box extends Phaser.GameObjects.Container{
 				//console.log('step 3');	
 				
 				diplomacy_points = diplomancy_points_starting;
-				military_points = 0;
+				military_points = military_points_starting;
 				geoforming_points = 0;	
 				
 				//console.log('step 4');

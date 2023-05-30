@@ -137,6 +137,7 @@ class agent_cover extends Phaser.GameObjects.Container
 				diplomacy_point_text.text = diplomacy_points+agent_name_text;
 				military_point_text.text = military_points+carbon_text;
 				
+				perm_action_playability_check();
 				
 				phase = 0;
 			}
@@ -166,8 +167,8 @@ class agent_cover extends Phaser.GameObjects.Container
 				
 				diplomacy_point_text.text = diplomacy_points+agent_name_text;
 				military_point_text.text = military_points+carbon_text;
-
-				
+				perm_action_playability_check();
+					
 				phase = 0;
 				
 

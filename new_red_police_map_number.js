@@ -18,11 +18,19 @@ function new_red_police_map_number(current_number)
 			red_police_choice = random_choice;
 			
 			red_police_array[random_choice] = 1;
-			
+	
+			diplomacy_points=diplomacy_points+info_value[random_choice];
+	
 			info_value[random_choice] = 0;
 			info_stealth[random_choice] = 0;
 			code_1[random_choice] = -1;
 			code_2[random_choice] = -1;
+			
+			diplomacy_point_text.text = diplomacy_points+agent_name_text;
+			military_point_text.text = military_points+carbon_text;
+				
+			perm_action_playability_check();
+
 			
 			//map_big_police_array[random_choice].visible = true;
 			found_choice = 1;

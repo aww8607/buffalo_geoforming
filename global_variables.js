@@ -39,6 +39,7 @@ var military_points = 10;
 var geoforming_points = 0;
 
 var diplomancy_points_starting = 8;
+var military_points_starting = 400;
 var temp_change_value = 0.0;
 var instruction_box;
 var diplomacy_point_text;
