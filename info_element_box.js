@@ -57,8 +57,8 @@ class info_element_box extends Phaser.GameObjects.Container{
 
 			left_arrow_lenght = -33;
 			
-			if(element_number==11){left_arrow_lenght = -33; left_arrow_BG_offset =2;}
-			else if(element_number==12){left_arrow_lenght = -72; left_arrow_BG_offset =3;}
+			if(element_number==11){left_arrow_lenght = -120; left_arrow_BG_offset =2;}
+			else if(element_number==12){left_arrow_lenght = -105; left_arrow_BG_offset =3;}
 			else if(element_number==13){left_arrow_lenght = -100; left_arrow_BG_offset =4;}
 			else if(element_number==14){left_arrow_lenght = -45; left_arrow_BG_offset =2;}
 			else if(element_number==15){left_arrow_lenght = -120; left_arrow_BG_offset =5;}
@@ -130,9 +130,14 @@ class info_element_box extends Phaser.GameObjects.Container{
 			
 			}
 						
-			var tech_level_text = scene.add.text(50+arrow_x_axis, 15+180+3, 'Activists', {fontSize: 'bold 18px', color: '#000000', wordWrap: { width: button_width-30, useAdvancedWrap: true}});
+			var tech_level_text = scene.add.text(50+arrow_x_axis+30, 15+180+3, 'Activists', {fontSize: 'bold 18px', color: '#000000', wordWrap: { width: button_width-30, useAdvancedWrap: true}});
 			tech_level_text.setOrigin(0,0);
 			this.add(tech_level_text);
+		
+			var agent_graphic = this.scene.add.image(50+arrow_x_axis-8, 15+180-3, card_graphics_array[5]);
+			agent_graphic.scale = 1;
+			agent_graphic.setOrigin(0,0);
+			this.add(agent_graphic)
 			
 			var tech_border_box = this.scene.add.rectangle(15+arrow_x_axis-3, 15+180-3, 29, 29, 0xFF0000);
 			tech_border_box.setOrigin(0,0);
@@ -196,11 +201,16 @@ class info_element_box extends Phaser.GameObjects.Container{
 			if(vp_map_boxes[element_number]==1)
 			{
 
-				var mitigation_marker = scene.add.text(15+arrow_x_axis, 600, "VVVV", {fontSize: 'bold 18px', color: '#FFFFFF', wordWrap: { width: button_width-30, useAdvancedWrap: true}});
-				mitigation_marker.setOrigin(0,0);
-				this.add(mitigation_marker);
+				//var mitigation_marker = scene.add.text(15+arrow_x_axis, 600, "VVVV", {fontSize: 'bold 18px', color: '#FFFFFF', wordWrap: { width: button_width-30, useAdvancedWrap: true}});
+				//mitigation_marker.setOrigin(0,0);
+				//this.add(mitigation_marker);
 				
-				var mitigation_marker_text = scene.add.text(73+arrow_x_axis, 600, "Mitigation Marker", {fontSize: 'bold 18px', color: '#006633', wordWrap: { width: button_width-30, useAdvancedWrap: true}});
+				var info_mit_graphic = this.scene.add.image(15+arrow_x_axis, 600-3, card_graphics_array[29]);
+				info_mit_graphic.scale = 0.6;
+				info_mit_graphic.setOrigin(0,0);
+				this.add(info_mit_graphic);
+
+				var mitigation_marker_text = scene.add.text(43+arrow_x_axis, 600, "Mitigation Marker", {fontSize: 'bold 18px', color: '#006633', wordWrap: { width: button_width-30, useAdvancedWrap: true}});
 				mitigation_marker_text.setOrigin(0,0);
 				this.add(mitigation_marker_text);
 

@@ -37,16 +37,16 @@ function int_permanent_actions(scene)
 	
 	//add card to desk
 	permanent_cost_used_1[2] = 1;
-	permanent_cost_meta_type_1[2] = 3; //country resource
-	permanent_cost_type_1[2] = 3; //Industry
-	permanent_cost_value_1[2] = 0; //no info level
+	permanent_cost_meta_type_1[2] = 1; //agents
+	permanent_cost_type_1[2] = 1; //Industry
+	permanent_cost_value_1[2] = 4; //no info level
 	
-	permanent_cost_used_2[2] = 1;
+	permanent_cost_used_2[2] = 0;
 	permanent_cost_meta_type_2[2] = 3; //country resource
 	permanent_cost_type_2[2] = 0; //alliance
 	permanent_cost_value_2[2] = 0; //no info level
 	
-	permanent_cost_used_3[2] = 1;
+	permanent_cost_used_3[2] = 0;
 	permanent_cost_meta_type_3[2] = 3; //country resource
 	permanent_cost_type_3[2] = 1; //intel agency
 	permanent_cost_value_3[2] = 0; //number of points
@@ -59,12 +59,12 @@ function int_permanent_actions(scene)
 	
 	permanent_cost_used_2[3] = 1;
 	permanent_cost_meta_type_2[3] = 3; //country resource
-	permanent_cost_type_2[3] = 1; //Opps point
+	permanent_cost_type_2[3] = 3; //Opps point
 	permanent_cost_value_2[3] = 0; //no of opps points
 	
 	permanent_cost_used_3[3] = 1;
 	permanent_cost_meta_type_3[3] = 3; //country resource
-	permanent_cost_type_3[3] = 4; //criminal underworld
+	permanent_cost_type_3[3] = 0; //criminal underworld
 	permanent_cost_value_3[3] = 0; //no info level
 
 	//Pick Next Card

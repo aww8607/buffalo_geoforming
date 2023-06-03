@@ -361,7 +361,7 @@ class action_card_container extends Phaser.GameObjects.Container
 			}
 			else if(action_type[card_no] == 1)
 			{
-				action_description = 'A red storm marker will be placed on a randomly selected box without a mitigation marker (vvvv).';				
+				action_description = 'A red storm marker will be placed on a randomly selected box without a mitigation marker.';				
 								
 				//var red_shield_left = this.scene.add.image(100, 67-y_offset, card_graphics_array[11]);
 				//red_shield_left.setOrigin(0,0);

@@ -403,8 +403,10 @@ function play_card(card_no, scene)
 				if(map_colors_array[d] == action_var_2[card_no] && info_value[d] >= action_var_3[card_no])
 				{
 					military_points = military_points - action_var_1[card_no]; 	
-					if(military_points < 0){military_points=0;}
-					military_point_text.text = military_points+carbon_text;	
+					//if(military_points < 0){military_points=0;}
+					military_point_text.text = military_points+carbon_text;
+					//if(military_points >= 0){military_point_text.text = military_points+carbon_text;}
+					//else if(military_points < 0){military_point_text.text = '-'+military_points+carbon_text;}
 				}
 			}	
 

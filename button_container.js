@@ -357,8 +357,8 @@ class button_container extends Phaser.GameObjects.Container
 					try_count=try_count+1;
 					
 				}
-
-
+				
+				
 				if(permanent_cost_meta_type_1[2] == 1)
 				{
 					if(permanent_cost_type_1[2]==0) //victory points
@@ -536,6 +536,9 @@ class button_container extends Phaser.GameObjects.Container
 			if(phase == 0)
 			{
 				//console.log("Pick Next Card");			
+				
+				//console.log("In Deck: "+in_deck.length);
+				
 				try_count=0;
 				found_card=0;
 				
@@ -575,7 +578,7 @@ class button_container extends Phaser.GameObjects.Container
 					deck_position = Math.floor(Math.random() * in_deck.length);	
 				
 					//random_choice = in_deck[deck_position];
-					if(in_deck[deck_position] > -1 && card_choice_1 != deck_position && played[in_deck[deck_position]]==0)
+					if(in_deck[deck_position] > -1 && card_type[in_deck[card_choice_1]] != card_type[in_deck[deck_position]] && played[in_deck[deck_position]]==0)
 					{
 						card_choice_2 = deck_position;
 						found_card = 1;
@@ -593,7 +596,8 @@ class button_container extends Phaser.GameObjects.Container
 					deck_position = Math.floor(Math.random() * in_deck.length);	
 				
 					//random_choice = in_deck[deck_position];
-					if(in_deck[deck_position] > -1 && card_choice_1 != deck_position && card_choice_2 != deck_position && played[in_deck[deck_position]]==0)
+					//console.log("deck_position: "+deck_position+" choice_type: "+card_type[deck_position]+" type one: "+card_type[card_choice_1]+" type two: "+card_type[card_choice_2]);
+					if(in_deck[deck_position] > -1 && card_type[in_deck[card_choice_1]] != card_type[in_deck[deck_position]] && card_type[in_deck[card_choice_2]] != card_type[in_deck[deck_position]] && played[in_deck[deck_position]]==0)
 					{
 						card_choice_3 = deck_position;
 						found_card = 1;

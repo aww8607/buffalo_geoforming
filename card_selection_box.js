@@ -256,8 +256,9 @@
 				{
 					phase = 0;
 					
+					new_deck_card_count=in_deck.length+1;
 					in_deck[new_deck_card_count] = add_deck[card_no]; //0
-					new_deck_card_count=new_deck_card_count+1;
+					//new_deck_card_count=new_deck_card_count+1;
 
 					
 					add_deck[card_no]=-1;

@@ -12,10 +12,10 @@ function new_deck()
 	
 	pick_new_agents();	
 	
-	for(var y=0; y<5000; y++)
-	{
-		in_deck[y] = -1;
-	}
+	//for(var y=0; y<5000; y++)
+	//{
+	//	in_deck[y] = -1;
+	//}
 
 	for(var p=0; p<120; p++)
 	{
@@ -232,7 +232,7 @@ function new_deck()
 	}
 	*/
 
-	
+	in_deck.splice(0);
 
 	in_deck[card_count] = 18; //0
 	card_count=card_count+1;	
@@ -252,7 +252,7 @@ function new_deck()
 	in_deck[card_count] = 15; //5
 	card_count=card_count+1;
 	
-	in_deck[card_count] = 20; //6
+	in_deck[card_count] = 17; //6
 	card_count=card_count+1;
 	
 	in_deck[card_count] = 7; //7
@@ -268,16 +268,10 @@ function new_deck()
 	card_count=card_count+1;
 
 
-    add_deck[0] = 20;
+
+    add_deck[0] = 19;
     add_deck[1] = 16;
     add_deck[2] = 20;
-	add_deck[3] = 19;
-	add_deck[4] = 19;
-	add_deck[5] = 19;
-	add_deck[6] = 19;
-	add_deck[7] = 19;
-	add_deck[8] = 20;
-	add_deck[9] = 16;
 	
 	
 	
