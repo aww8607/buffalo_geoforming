@@ -141,7 +141,7 @@ function play_card(card_no, scene)
 						}
 						else if(action_type[card_no]==3)
 						{
-							military_points=military_points+action_var_4[card_no];	
+							military_points=military_points+action_var_3[card_no];	
 							military_point_text.text = military_points+carbon_text;								
 						}
 						
@@ -436,6 +436,31 @@ function play_card(card_no, scene)
 
 			
 		}
+		else if(action_type[card_no]==2)
+		{
+			for(var d=0; d<56; d++)
+			{			
+				//console.log("action_var_2: "+action_var_2[card_no]+" map_colors_array: "+map_colors_array[d]+" info_value: "+info_value[d]+" action_var_3: "+action_var_3[card_no]);
+				if(code_1[d] == action_var_2[card_no])
+				{
+					military_points = military_points - action_var_1[card_no]; 	
+					military_point_text.text = military_points+carbon_text;
+				}
+				if(code_2[d] == action_var_2[card_no])
+				{
+					military_points = military_points - action_var_1[card_no]; 	
+					military_point_text.text = military_points+carbon_text;
+				}
+				
+			}
+
+			card_cost_effect(card_no);		
+			agent_update();
+			if(auto_card[card_no]==0){new_card(-1,scene);}
+
+			
+		}
+		
 	}	
 	else if(card_type[card_no]==11)
 	{

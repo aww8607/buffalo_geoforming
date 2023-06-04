@@ -129,7 +129,7 @@
 		
 		//arrest graphic 16 //kim philby
 		card_graphics_array[graphic_count]="_"+graphic_count;
-		this.load.image(card_graphics_array[graphic_count],'graphics/kim_philby.png');
+		this.load.image(card_graphics_array[graphic_count],'graphics/victory_screen_image.png');
 		graphic_count=graphic_count+1;
 		
 		//arrest graphic 17 //KGB

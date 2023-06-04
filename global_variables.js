@@ -39,7 +39,7 @@ var military_points = 10;
 var geoforming_points = 0;
 
 var diplomancy_points_starting = 8;
-var military_points_starting = 400;
+var military_points_starting = 0;
 var temp_change_value = 0.0;
 var instruction_box;
 var diplomacy_point_text;
@@ -59,7 +59,7 @@ var step = -1;
 var demo_holder;
 var temp_info_holder;
 var carbon_denominator_constant = 400;
-var geoforming_multiplier = 400;
+var geoforming_multiplier = 50;
 var mitigation_marker = [];
 
 var menu_button_titles = [];
@@ -313,11 +313,11 @@ var temp_change_text = ' Deg. Temp. Change'
 var total_victory_level = 0.0;
 var major_victory_lower = 0.0;
 var major_victory_upper = 1.0;
-var minor_victory_lower = 1.1;
+var minor_victory_lower = 1.0;
 var minor_victory_upper = 2.0;
-var draw_lower = 2.1;
+var draw_lower = 2.0;
 var draw_upper = 3.0;
-var loss_level = 3.1;
+var loss_level = 3.0;
 
 var total_victory_weather_events = 0;
 var major_victory_weather_events = 0;

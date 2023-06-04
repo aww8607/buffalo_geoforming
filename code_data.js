@@ -1,4 +1,4 @@
-code_name[0] = "(C)oal Plants";
+code_name[0] = "(O)il Drillers";
 code_name[1] = "(S)abatage";
 code_name[2] = "";
 code_name[3] = "";
@@ -14,7 +14,7 @@ code_name[12] = "";
 
 
 
-code_letter[0] = "C";
+code_letter[0] = "O";
 code_letter[1] = "S";
 code_letter[2] = "";
 code_letter[3] = "";
@@ -30,7 +30,7 @@ code_letter[12] = "";
 
 
 map_box_names[0] = "Political Party";
-map_box_names[1] = "Electricity";
+map_box_names[1] = "Energy";
 map_box_names[2] = "Technology";
 map_box_names[3] = "Agriculture";
 map_box_names[4] = "Local Government";

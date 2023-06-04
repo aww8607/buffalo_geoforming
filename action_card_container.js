@@ -857,6 +857,45 @@ class action_card_container extends Phaser.GameObjects.Container
 				
 			
 			}
+			if(action_type[card_no]==2)
+			{
+				if(action_var_1[card_no] == 1)
+				{
+					main_text = "Subtract "+action_var_1[card_no]+" CO2 point from the CO2 point total for every "+code_name[action_var_2[card_no]]+" characteristic marker";
+				}
+				else if(action_var_1[card_no] > 1)
+				{
+					main_text = "Subtract "+action_var_1[card_no]+" CO2 points from the CO2 point total for every "+code_name[action_var_2[card_no]]+" characteristic marker";
+				}
+				
+				if(play_once[card_no]==0){discard_text = '';}	
+					
+				action_description = main_text+discard_text;
+			
+
+					var cost_a_graphic_number = scene.add.text(15, 15, '-'+action_var_1[card_no], {fontSize: 'bold 18px', color: '#000000', wordWrap: { width: 850, useAdvancedWrap: true}});
+					cost_a_graphic_number.x = 85+25-40+20-30;
+					cost_a_graphic_number.y = 73-2-y_offset;
+					this.add(cost_a_graphic_number);
+
+					var point_type = scene.add.image(0, 0, card_graphics_array[24]);
+					point_type.x=110+20-20;
+					point_type.y=79-y_offset;
+					point_type.scale = 0.75
+					this.add(point_type);		
+					
+					var cost_a_per_text = scene.add.text(15, 15, 'PER', {fontSize: 'bold 18px', color: '#000000', wordWrap: { width: 850, useAdvancedWrap: true}});
+					cost_a_per_text.x = 110+20+20-20;
+					cost_a_per_text.y = 73-2-y_offset;
+					this.add(cost_a_per_text);
+
+					var cost_a_char_var = new code_box_container(scene,action_var_2[card_no]);
+					cost_a_char_var.x=85+86+20-20;
+					cost_a_char_var.y=70-3-y_offset;
+					this.add(cost_a_char_var);
+				
+			
+			}
 			
 			
 		}	

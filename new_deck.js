@@ -269,8 +269,9 @@ function new_deck()
 
 
 
+
     add_deck[0] = 19;
-    add_deck[1] = 16;
+    add_deck[1] = 3;
     add_deck[2] = 20;
 	
 	
