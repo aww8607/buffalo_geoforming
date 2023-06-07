@@ -197,6 +197,22 @@
 		this.load.image(card_graphics_array[graphic_count],'graphics/seawall.png');
 		graphic_count=graphic_count+1;
 		
+		//arrest graphic 30 //left arrow
+		card_graphics_array[graphic_count]="_"+graphic_count;
+		this.load.image(card_graphics_array[graphic_count],'graphics/left_long_arrow.png');
+		graphic_count=graphic_count+1;
+		
+		//arrest graphic 31 //left arrow
+		card_graphics_array[graphic_count]="_"+graphic_count;
+		this.load.image(card_graphics_array[graphic_count],'graphics/up_long_arrow.png');
+		graphic_count=graphic_count+1;
+		
+		//arrest graphic 32 //left short arrow
+		card_graphics_array[graphic_count]="_"+graphic_count;
+		this.load.image(card_graphics_array[graphic_count],'graphics/left_short.png');
+		graphic_count=graphic_count+1;
+		
+				
     }
 
     function create ()

@@ -39,12 +39,138 @@ class menu_back_box extends Phaser.GameObjects.Container{
 
 			var key_image = this.scene.add.image(0, 0, card_graphics_array[18]);
 			key_image.setOrigin(0,0);
-			key_image.scale = 1.5;
+			key_image.scale = 1.0;
 			key_image.x = 40;
 			key_image.y = 30;
 			
 			this.add(key_image);	
 
+			var charactaristic_arrow = this.scene.add.image(0, 0, card_graphics_array[30]);
+			charactaristic_arrow.setOrigin(0,0);
+			charactaristic_arrow.x = 410;
+			charactaristic_arrow.y = 102;
+			this.add(charactaristic_arrow);	
+
+			var charactaristic_text = new text_box_container(scene, 'Characteristic Marker', '',270,40);
+			charactaristic_text.x = 530;
+			charactaristic_text.y = 95;
+			this.add(charactaristic_text);
+			
+			var mitigation_arrow = this.scene.add.image(0, 0, card_graphics_array[32]);
+			mitigation_arrow.setOrigin(0,0);
+			mitigation_arrow.x = 480;
+			mitigation_arrow.y = 285;
+			mitigation_arrow.angle = 270;
+			this.add(mitigation_arrow);	
+
+			var mitigation_text = new text_box_container(scene, 'Mitigation Marker', 'A Storm marker cannot be placed on this capability box',400,100);
+			mitigation_text.x = 400;
+			mitigation_text.y = 150;
+			this.add(mitigation_text);
+			
+			var storm_arrow = this.scene.add.image(0, 0, card_graphics_array[32]);
+			storm_arrow.setOrigin(0,0);
+			storm_arrow.x = 580;
+			storm_arrow.y = 330;
+			storm_arrow.angle = 0;
+			this.add(storm_arrow);	
+						
+			var storm_text = new text_box_container(scene, 'Storm Marker', 'You cannot place Activist markers on capability boxes with a Storm marker',230,150);
+			storm_text.x = 630;
+			storm_text.y = 260;
+			this.add(storm_text);
+			
+			var box_activist_1 = this.scene.add.image(0, 0, card_graphics_array[32]);
+			box_activist_1.setOrigin(0,0);
+			box_activist_1.x = 344;
+			box_activist_1.y = 570;
+			box_activist_1.angle = 270;
+			this.add(box_activist_1);	
+
+			var box_activist_2 = this.scene.add.image(0, 0, card_graphics_array[32]);
+			box_activist_2.setOrigin(0,0);
+			box_activist_2.x = 344+56;
+			box_activist_2.y = 570;
+			box_activist_2.angle = 270;
+			this.add(box_activist_2);	
+
+			var box_activist_3 = this.scene.add.image(0, 0, card_graphics_array[32]);
+			box_activist_3.setOrigin(0,0);
+			box_activist_3.x = 344+56*3;
+			box_activist_3.y = 570;
+			box_activist_3.angle = 270;
+			this.add(box_activist_3);	
+
+			var box_activist_4 = this.scene.add.image(0, 0, card_graphics_array[32]);
+			box_activist_4.setOrigin(0,0);
+			box_activist_4.x = 344+56*4;
+			box_activist_4.y = 570;
+			box_activist_4.angle = 270;
+			this.add(box_activist_4);	
+						
+			var activists_in_boxes_text = new text_box_container(scene, 'Activists in Capability Boxes', 'You need an activist marker in 4 of the capability boxes in a row to control the brown country box to the left',550,115);
+			activists_in_boxes_text.x = 280;
+			activists_in_boxes_text.y = 400;
+			this.add(activists_in_boxes_text);
+			
+			var country_box_arrow = this.scene.add.image(0, 0, card_graphics_array[32]);
+			country_box_arrow.setOrigin(0,0);
+			country_box_arrow.x = 323;
+			country_box_arrow.y = 647;
+			this.add(country_box_arrow);	
+			country_box_arrow.angle = 90;
+			
+			var country_box_text = new text_box_container(scene, 'Country Box', 'Each brown country box has two resources at the top, and a carbon emissions number at the bottom.  Each turn, the carbon emissions number is added to the C02 total',550,140);
+			country_box_text.x = 290;
+			country_box_text.y = 680;
+			this.add(country_box_text);
+			
+			var action_card_arrow = this.scene.add.image(0, 0, card_graphics_array[32]);
+			action_card_arrow.setOrigin(0,0);
+			action_card_arrow.x = 100;
+			action_card_arrow.y = 220;
+			this.add(action_card_arrow);	
+			action_card_arrow.angle = 270;
+						
+			var action_card_text = new text_box_container(scene, 'Action Card', 'The effect of this card happens at the end of the turn, even if you play another action',340,150);
+			action_card_text.x = 20;
+			action_card_text.y = 20;
+			this.add(action_card_text);
+
+			var perm_action_resource_1 = this.scene.add.image(0, 0, card_graphics_array[32]);
+			perm_action_resource_1.setOrigin(0,0);
+			perm_action_resource_1.x = 197;
+			perm_action_resource_1.y = 530;
+			this.add(perm_action_resource_1);	
+			perm_action_resource_1.angle = 90;
+
+			var perm_action_resource_2 = this.scene.add.image(0, 0, card_graphics_array[32]);
+			perm_action_resource_2.setOrigin(0,0);
+			perm_action_resource_2.x = 197+35;
+			perm_action_resource_2.y = 530;
+			this.add(perm_action_resource_2);	
+			perm_action_resource_2.angle = 90;
+			
+			var perm_action_resource_3 = this.scene.add.image(0, 0, card_graphics_array[32]);
+			perm_action_resource_3.setOrigin(0,0);
+			perm_action_resource_3.x = 195+35*2;
+			perm_action_resource_3.y = 530;
+			this.add(perm_action_resource_3);	
+			perm_action_resource_3.angle = 90;
+			
+			var perm_action_name_arrow = this.scene.add.image(0, 0, card_graphics_array[30]);
+			perm_action_name_arrow.setOrigin(0,0);
+			perm_action_name_arrow.x = 120;
+			perm_action_name_arrow.y = 500;
+			this.add(perm_action_name_arrow);	
+			perm_action_name_arrow.angle = 90;
+			
+			var permanent_action_text = new text_box_container(scene, 'Permanent Action', 'You need to control brown country boxes with each of these resources to play this action.  You do not control a country with an Alliance resource, so you cannot play this action',250,250);
+			permanent_action_text.x = 20;
+			permanent_action_text.y = 570;
+			this.add(permanent_action_text);
+			
+			
 			
 			var title_text = this.scene.add.text(0, 5, 'EXIT', { fontSize: 'bold 18px', color: '#000000', wordWrap: { width: 140, useAdvancedWrap: true}});
 			title_text.setOrigin(0,0);
