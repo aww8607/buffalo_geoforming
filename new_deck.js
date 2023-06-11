@@ -168,10 +168,21 @@ function new_deck()
 	
 	if(demo_completed == 0)
 	{
+		
+		
 		for(var q = 0; q<56; q++)
 		{	
 			vp_map_boxes[q] = demo_vp_map_boxes[q];	
 			vp_map_box_score_array[q] = demo_vp_map_boxes[q] * vp_map_box_score;
+			
+			agent_present[q]=demo_agent_present[q];
+			info_value[q] = demo_info_value[q];
+			info_stealth[q] = demo_info_stealth[q];
+
+			code_1[q] = demo_agent_char_1[q];
+			code_2[q] = demo_agent_char_2[q];
+			
+			
 		}		
 	}
 	else

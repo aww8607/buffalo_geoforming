@@ -33,6 +33,8 @@ function agent_update()
 			
 			if(info_value[w]>0)
 			{	
+				
+				
 				unit_back_box[w].visible = true;
 				unit_back_box[w].alpha = 1.0;
 

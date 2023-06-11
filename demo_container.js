@@ -27,7 +27,7 @@ class demo_container extends Phaser.GameObjects.Container
 		{
 			phase = 9;
 
-			const arrow_1 = this.scene.add.image(700+x_90_offset, 75+y_90_offset, card_graphics_array[14]);
+			const arrow_1 = this.scene.add.image(165+x_90_offset, 75+y_90_offset, card_graphics_array[14]);
 			arrow_1.setOrigin(0,0);
 			arrow_1.angle = 90;
 			arrow_1.setScale(0.5);
@@ -64,7 +64,7 @@ class demo_container extends Phaser.GameObjects.Container
 			box.on('pointerdown', () => {this.clickMe(scene);});
 			box.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
 
-			demo_instructions_text ="This is a worker placement and deck building game.  You win by scoring victory points, which you can see above the green arrow";
+			demo_instructions_text ="This is a worker placement and deck building game.  You win by keeping Earth's temperature change below one degree. You can see the current amount of temperature change on the button above the green arrow.  Press the button later to learn more about temperature change mechanics.";
 
 			const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
 			demo_instructions.setOrigin(0,0);
@@ -91,9 +91,9 @@ class demo_container extends Phaser.GameObjects.Container
 		{
 			phase = 9;
 
-			const arrow_1 = this.scene.add.image(290+x_0_offset, 200+y_0_offset, card_graphics_array[14]);
+			const arrow_1 = this.scene.add.image(525+x_90_offset, 75+y_90_offset, card_graphics_array[14]);
 			arrow_1.setOrigin(0,0);
-			arrow_1.angle = 0;
+			arrow_1.angle = 90;
 			arrow_1.setScale(0.5);
 			this.add(arrow_1);			
 			
@@ -119,7 +119,7 @@ class demo_container extends Phaser.GameObjects.Container
 			*/
 			
 			instruct_x = 100;
-			instruct_y = 400;//+Math.floor(Math.random()*100);
+			instruct_y = 165;//+Math.floor(Math.random()*100);
 
 			const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[15]).setInteractive();
 			box.setOrigin(0,0);
@@ -128,7 +128,7 @@ class demo_container extends Phaser.GameObjects.Container
 			box.on('pointerdown', () => {this.clickMe(scene);});
 			box.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
 
-			demo_instructions_text ="You can score victory points when a card that generates victory points appears at the top of your deck.  The current card happens to do this.  Unless otherwise noted on the card, the card’s effect will happen after you chose an action to play";
+			demo_instructions_text ="Earth's temperature rises as more carbon dioxide is emmitted into the atmosphere.  Total atmospheric CO2 is tracked at the top of the screen next to the CO2 molecule icon, right above the green arrow.";
 
 			const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
 			demo_instructions.setOrigin(0,0);
@@ -155,35 +155,37 @@ class demo_container extends Phaser.GameObjects.Container
 		{
 			phase = 9;
 
-			const arrow_1 = this.scene.add.image(demo_agent_x[33]+x_270_offset+15, demo_agent_y[33]+y_270_offset+10, card_graphics_array[14]);
+			//const arrow_1 = this.scene.add.image(demo_agent_x[33]+x_270_offset+15, demo_agent_y[33]+y_270_offset+10, card_graphics_array[14]);
+			const arrow_1 = this.scene.add.image(370+x_0_offset, 447+y_0_offset, card_graphics_array[14]);
 			arrow_1.setOrigin(0,0);
-			arrow_1.angle = 270;
+			arrow_1.angle = 0;
 			arrow_1.setScale(0.5);
 			this.add(arrow_1);			
 			
-			/*
-			const arrow_2 = this.scene.add.image(0+x_90_offset, 0+y_90_offset, card_graphics_array[14]);
+			
+			const arrow_2 = this.scene.add.image(370+x_0_offset, 351+y_0_offset, card_graphics_array[14]);
 			arrow_2.setOrigin(0,0);
-			arrow_2.angle = 90;
+			arrow_2.angle = 0;
 			arrow_2.setScale(0.5);
 			this.add(arrow_2);
-
-			const arrow_3 = this.scene.add.image(0+x_180_offset, 0+y_180_offset, card_graphics_array[14]);
+			
+			
+			const arrow_3 = this.scene.add.image(370+x_0_offset, 255+y_0_offset, card_graphics_array[14]);
 			arrow_3.setOrigin(0,0);
-			arrow_3.angle = 180;
+			arrow_3.angle = 0;
 			arrow_3.setScale(0.5);
 			this.add(arrow_3);
 
-			const arrow_4 = this.scene.add.image(0+x_270_offset, 0+y_270_offset, card_graphics_array[14]);
+			
+
+			const arrow_4 = this.scene.add.image(370+x_0_offset, 160+y_0_offset, card_graphics_array[14]);
 			arrow_4.setOrigin(0,0);
-			arrow_4.angle = 270;
+			arrow_4.angle = 0;
 			arrow_4.setScale(0.5);
 			this.add(arrow_4);
 			
-			*/
-			
 			instruct_x = 100;
-			instruct_y = 550;//+Math.floor(Math.random()*100);
+			instruct_y = 500;//+Math.floor(Math.random()*100);
 
 			const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[15]).setInteractive();
 			box.setOrigin(0,0);
@@ -192,7 +194,7 @@ class demo_container extends Phaser.GameObjects.Container
 			box.on('pointerdown', () => {this.clickMe(scene);});
 			box.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
 
-			demo_instructions_text ="To score victory points with this card, you need to have an agent in a green / intelligence box with six or more information points.  You can see that you happen to have just such an agent below the green arrow.   The number in the upper left corner of the agent marker is its information value";
+			demo_instructions_text ="Each country, the brown boxes on the left, emmits a certain amount of CO2 each turn.  The number at the bottom of each brown box represents the amount of CO2 added to the CO2 total at the top of the screen each turn.";
 
 			const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
 			demo_instructions.setOrigin(0,0);
@@ -222,7 +224,7 @@ class demo_container extends Phaser.GameObjects.Container
 			{
 				phase = 9;
 
-				const arrow_1 = this.scene.add.image(700+x_90_offset, 75+y_90_offset, card_graphics_array[14]);
+				const arrow_1 = this.scene.add.image(370+x_90_offset, 80+y_90_offset, card_graphics_array[14]);
 				arrow_1.setOrigin(0,0);
 				arrow_1.angle = 90;
 				arrow_1.setScale(0.5);
@@ -250,7 +252,7 @@ class demo_container extends Phaser.GameObjects.Container
 				*/
 				
 				instruct_x = 50;
-				instruct_y = 250;//+Math.floor(Math.random()*100);
+				instruct_y = 300;//+Math.floor(Math.random()*100);
 
 				const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[15]).setInteractive();
 				box.setOrigin(0,0);
@@ -259,7 +261,7 @@ class demo_container extends Phaser.GameObjects.Container
 				box.on('pointerdown', () => {this.clickMe(scene);});
 				box.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
 
-				demo_instructions_text ="You just gained a victory point!";
+				demo_instructions_text ="Good job!  You just added another Activist to your Activist point total.";
 
 				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
 				demo_instructions.setOrigin(0,0);
@@ -286,20 +288,20 @@ class demo_container extends Phaser.GameObjects.Container
 
 				phase = 9;
 
-				const arrow_1 = this.scene.add.image(290+x_0_offset, 347+y_0_offset, card_graphics_array[14]);
+				const arrow_1 = this.scene.add.image(285+x_0_offset, 385+y_0_offset, card_graphics_array[14]);
 				arrow_1.setOrigin(0,0);
 				arrow_1.angle = 0;
 				arrow_1.setScale(0.5);
 				this.add(arrow_1);			
 				
-				/*
-				const arrow_2 = this.scene.add.image(290+x_0_offset, 400+y_0_offset, card_graphics_array[14]);
+				
+				const arrow_2 = this.scene.add.image(730+x_0_offset, 143+y_0_offset, card_graphics_array[14]);
 				arrow_2.setOrigin(0,0);
 				arrow_2.angle = 0;
 				arrow_2.setScale(0.5);
 				this.add(arrow_2);
 
-				
+				/*
 				const arrow_3 = this.scene.add.image(0+x_180_offset, 0+y_180_offset, card_graphics_array[14]);
 				arrow_3.setOrigin(0,0);
 				arrow_3.angle = 180;
@@ -315,7 +317,7 @@ class demo_container extends Phaser.GameObjects.Container
 				*/
 				
 				instruct_x = 100;
-				instruct_y = 400;//+Math.floor(Math.random()*100);
+				instruct_y = 430;//+Math.floor(Math.random()*100);
 
 				const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[15]).setInteractive();
 				box.setOrigin(0,0);
@@ -324,7 +326,7 @@ class demo_container extends Phaser.GameObjects.Container
 				box.on('pointerdown', () => {this.clickMe(scene);});
 				box.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
 
-				demo_instructions_text ="Press the pass button on the card to let the card’s action take effect and move on to the next turn";
+				demo_instructions_text ="Every turn a new action card is drawn, and its action takes effect at the end of the turn.  This card will add one Activist to your Activist total for Capability Boxes with two Activistes.  You have one box that meets this criteria.  Press the PASS button to continue.";
 
 				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
 				demo_instructions.setOrigin(0,0);
@@ -354,37 +356,37 @@ class demo_container extends Phaser.GameObjects.Container
 		{
 				phase = 9;
 
-				const arrow_1 = this.scene.add.image(155+x_0_offset, 445+y_0_offset, card_graphics_array[14]);
+				const arrow_1 = this.scene.add.image(155+x_0_offset, 460+y_0_offset, card_graphics_array[14]);
 				arrow_1.setOrigin(0,0);
 				arrow_1.angle = 0;
 				arrow_1.setScale(0.5);
 				this.add(arrow_1);			
 				
 				
-				const arrow_2 = this.scene.add.image(155+x_0_offset, 540+y_0_offset, card_graphics_array[14]);
+				const arrow_2 = this.scene.add.image(155+x_0_offset, 530+y_0_offset, card_graphics_array[14]);
 				arrow_2.setOrigin(0,0);
 				arrow_2.angle = 0;
 				arrow_2.setScale(0.5);
 				this.add(arrow_2);
 
-				const arrow_3 = this.scene.add.image(290+x_0_offset, 347+y_0_offset, card_graphics_array[14]);
+				const arrow_3 = this.scene.add.image(155+x_0_offset, 595+y_0_offset, card_graphics_array[14]);
 				arrow_3.setOrigin(0,0);
 				arrow_3.angle = 0;
 				arrow_3.setScale(0.5);
 				this.add(arrow_3);			
 
 
-				/*
-				const arrow_4 = this.scene.add.image(0+x_270_offset, 0+y_270_offset, card_graphics_array[14]);
+				
+				const arrow_4 = this.scene.add.image(285+x_0_offset, 385+y_0_offset, card_graphics_array[14]);
 				arrow_4.setOrigin(0,0);
-				arrow_4.angle = 270;
+				arrow_4.angle = 0;
 				arrow_4.setScale(0.5);
 				this.add(arrow_4);
 				
-				*/
+				
 				
 				instruct_x = 50;
-				instruct_y = 125;//+Math.floor(Math.random()*100);
+				instruct_y = 130;//+Math.floor(Math.random()*100);
 
 				const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[15]).setInteractive();
 				box.setOrigin(0,0);
@@ -393,9 +395,9 @@ class demo_container extends Phaser.GameObjects.Container
 				box.on('pointerdown', () => {this.clickMe(scene);});
 				box.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
 
-				demo_instructions_text ="Every turn, you play one action by pressing a PLAY button on the lower left-hand corner of the screen.  You can also press the PASS button if you do not want to execute any of the actions.  REMEMBER: the action of the card in the upper left-hand corner will occur automatically";
+				demo_instructions_text ="Each turn, you can choose to play one of the actions in the bottom right corner of the screen.  You can also press PASS if none of the actions work.  You move on to the next turn, and the action card’s action takes effect.";
 
-				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 610, useAdvancedWrap: true}}).setInteractive();
 				demo_instructions.setOrigin(0,0);
 				demo_instructions.on('pointerdown', () => {this.clickMe(scene);});
 				demo_instructions.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
@@ -446,7 +448,7 @@ class demo_container extends Phaser.GameObjects.Container
 				*/
 				
 				instruct_x = 100;
-				instruct_y = 400;//+Math.floor(Math.random()*100);
+				instruct_y = 200;//+Math.floor(Math.random()*100);
 
 				const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[15]).setInteractive();
 				box.setOrigin(0,0);
@@ -455,7 +457,7 @@ class demo_container extends Phaser.GameObjects.Container
 				box.on('pointerdown', () => {this.clickMe(scene);});
 				box.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
 
-				demo_instructions_text ="Unfortunately, you cannot play the Pick Next Card action";
+				demo_instructions_text ="Let's place an Activist in a Capability box.";
 
 				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
 				demo_instructions.setOrigin(0,0);

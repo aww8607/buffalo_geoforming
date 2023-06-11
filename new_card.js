@@ -34,8 +34,8 @@ function new_card(card_pick,scene)
 	if(step> 0)
 	{
 		
-		if(step == 1){action_card_choice = 14;} 
-		else if(step == 5){action_card_choice = 26;} 
+		if(step == 1){action_card_choice = 2;} 
+		else if(step == 5){action_card_choice = 14;} 
 		else if(step == 12){action_card_choice = 32;} 
 		else if(step == 13){action_card_choice = 38;}
 	}

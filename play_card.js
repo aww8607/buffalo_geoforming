@@ -395,6 +395,8 @@ function play_card(card_no, scene)
 	}
 	else if(card_type[card_no]==10)
 	{
+		console.log("play");
+		
 		if(action_type[card_no]==0)
 		{
 			for(var d=0; d<56; d++)
