@@ -326,7 +326,7 @@ class demo_container extends Phaser.GameObjects.Container
 				box.on('pointerdown', () => {this.clickMe(scene);});
 				box.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
 
-				demo_instructions_text ="Every turn a new action card is drawn, and its action takes effect at the end of the turn.  This card will add one Activist to your Activist total for Capability Boxes with two Activistes.  You have one box that meets this criteria.  Press the PASS button to continue.";
+				demo_instructions_text ="Every turn a new action card is drawn, and its action takes effect at the end of the turn.  This card will add one Activist to your Activist total for green Capability Boxes with two Activistes.  You have one box that meets this criteria.  Press the PASS button to continue.";
 
 				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
 				demo_instructions.setOrigin(0,0);
@@ -418,11 +418,78 @@ class demo_container extends Phaser.GameObjects.Container
 		}
 		else if(step == 6)
 		{
+			if(button_no==5)
+			{
 				phase = 9;
 
-				const arrow_1 = this.scene.add.image(100+x_270_offset, 785+y_270_offset, card_graphics_array[14]);
+				const arrow_1 = this.scene.add.image(360+x_270_offset, 300+y_270_offset, card_graphics_array[14]);
 				arrow_1.setOrigin(0,0);
 				arrow_1.angle = 270;
+				arrow_1.setScale(0.5);
+				this.add(arrow_1);			
+				
+				
+				const arrow_2 = this.scene.add.image(505+x_270_offset, 300+y_270_offset, card_graphics_array[14]);
+				arrow_2.setOrigin(0,0);
+				arrow_2.angle = 270;
+				arrow_2.setScale(0.5);
+				this.add(arrow_2);
+
+				
+				const arrow_3 = this.scene.add.image(580+x_270_offset, 300+y_270_offset, card_graphics_array[14]);
+				arrow_3.setOrigin(0,0);
+				arrow_3.angle = 270;
+				arrow_3.setScale(0.5);
+				this.add(arrow_3);			
+				
+				
+				const arrow_4 = this.scene.add.image(655+x_270_offset, 300+y_270_offset, card_graphics_array[14]);
+				arrow_4.setOrigin(0,0);
+				arrow_4.angle = 270;
+				arrow_4.setScale(0.5);
+				this.add(arrow_4);
+				
+				
+				
+				instruct_x = 200;
+				instruct_y = 400;//+Math.floor(Math.random()*100);
+
+				const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[15]).setInteractive();
+				box.setOrigin(0,0);
+				box.setScale(0.5);
+				this.add(box);
+				box.on('pointerdown', () => {this.clickMe(scene);});
+				box.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
+
+				demo_instructions_text ="Placing Activists in the boxes next to a brown Country box allows you to take control of that country, and gain access to the Country's two resources. Right now, you have Activists in three of the Country's boxes.  You need Activists in four boxes to take control.";
+
+				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_instructions.setOrigin(0,0);
+				demo_instructions.on('pointerdown', () => {this.clickMe(scene);});
+				demo_instructions.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
+				this.add(demo_instructions);
+
+				demo_next_step_text = "Click on this box to continue";
+				const demo_next_step = this.scene.add.text(instruct_x+20, instruct_y+145, demo_next_step_text, { fontSize: 'bold 24px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_next_step.setOrigin(0,0);
+				demo_next_step.on('pointerdown', () => {this.clickMe(scene);});
+				demo_next_step.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});		
+				this.add(demo_next_step);
+
+
+				step=step+1;
+				
+				this.scene.add.existing(this);
+				this.depth = 95;		
+
+			}
+			else
+			{
+				phase = 9;
+
+				const arrow_1 = this.scene.add.image(155+x_0_offset, 460+y_0_offset, card_graphics_array[14]);
+				arrow_1.setOrigin(0,0);
+				arrow_1.angle = 0;
 				arrow_1.setScale(0.5);
 				this.add(arrow_1);			
 				
@@ -457,7 +524,7 @@ class demo_container extends Phaser.GameObjects.Container
 				box.on('pointerdown', () => {this.clickMe(scene);});
 				box.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
 
-				demo_instructions_text ="Let's place an Activist in a Capability box.";
+				demo_instructions_text ="Let's place an Activist in a Capability box.  Go ahead and press the PLACE button.";
 
 				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
 				demo_instructions.setOrigin(0,0);
@@ -465,7 +532,7 @@ class demo_container extends Phaser.GameObjects.Container
 				demo_instructions.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
 				this.add(demo_instructions);
 
-				demo_next_step_text = "Click on this box to continue";
+				demo_next_step_text = "Click the PLACE button to continue";
 				const demo_next_step = this.scene.add.text(instruct_x+20, instruct_y+145, demo_next_step_text, { fontSize: 'bold 24px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
 				demo_next_step.setOrigin(0,0);
 				demo_next_step.on('pointerdown', () => {this.clickMe(scene);});
@@ -473,92 +540,97 @@ class demo_container extends Phaser.GameObjects.Container
 				this.add(demo_next_step);
 
 
-				step=step+1;
+				//step=step+1;
 				
 				this.scene.add.existing(this);
 				this.depth = 95;		
+			}
 		}
 		else if(step == 7)
 		{
+			if(box_no == 15)
+			{
 				phase = 9;
 
-				const arrow_1 = this.scene.add.image(185+x_270_offset, 805+y_270_offset, card_graphics_array[14]);
-				arrow_1.setOrigin(0,0);
-				arrow_1.angle = 270;
-				arrow_1.setScale(0.5);
-				this.add(arrow_1);			
-				
-				
-				const arrow_2 = this.scene.add.image(230+x_270_offset, 805+y_270_offset, card_graphics_array[14]);
-				arrow_2.setOrigin(0,0);
-				arrow_2.angle = 270;
-				arrow_2.setScale(0.5);
-				this.add(arrow_2);
-				
-				/*
-				const arrow_3 = this.scene.add.image(290+x_0_offset, 347+y_0_offset, card_graphics_array[14]);
-				arrow_3.setOrigin(0,0);
-				arrow_3.angle = 0;
-				arrow_3.setScale(0.5);
-				this.add(arrow_3);			
-				
-				const arrow_4 = this.scene.add.image(0+x_270_offset, 0+y_270_offset, card_graphics_array[14]);
-				arrow_4.setOrigin(0,0);
-				arrow_4.angle = 270;
-				arrow_4.setScale(0.5);
-				this.add(arrow_4);
-				
-				*/
-				
-				instruct_x = 50;
-				instruct_y = 450;//+Math.floor(Math.random()*100);
-
-				const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[15]).setInteractive();
-				box.setOrigin(0,0);
-				box.setScale(0.5);
-				this.add(box);
-				box.on('pointerdown', () => {this.clickMe(scene);});
-				box.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
-
-				demo_instructions_text ="You cannot play this action because you lack agents in the proper boxes with the proper information level.  In this case, you need an agent with an information level of 6 or higher in an orange law enforcement box";
-
-				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
-				demo_instructions.setOrigin(0,0);
-				demo_instructions.on('pointerdown', () => {this.clickMe(scene);});
-				demo_instructions.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
-				this.add(demo_instructions);
-
-				demo_next_step_text = "Click on this box to continue";
-				const demo_next_step = this.scene.add.text(instruct_x+20, instruct_y+145, demo_next_step_text, { fontSize: 'bold 24px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
-				demo_next_step.setOrigin(0,0);
-				demo_next_step.on('pointerdown', () => {this.clickMe(scene);});
-				demo_next_step.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});		
-				this.add(demo_next_step);
-
-
-				step=step+1;
-				
-				this.scene.add.existing(this);
-				this.depth = 95;		
-		}
-		else if(step == 8)
-		{
-				phase = 9;
-
-				const arrow_1 = this.scene.add.image(demo_agent_x[6]+x_180_offset+10, demo_agent_y[6]+y_180_offset+13, card_graphics_array[14]);
+				const arrow_1 = this.scene.add.image(330+x_180_offset, 300+y_180_offset, card_graphics_array[14]);
 				arrow_1.setOrigin(0,0);
 				arrow_1.angle = 180;
 				arrow_1.setScale(0.5);
 				this.add(arrow_1);			
 				
-				/*
-				const arrow_2 = this.scene.add.image(demo_agent_x[28]+x_180_offset+10, demo_agent_y[28]+y_180_offset+13, card_graphics_array[14]);
+				
+				
+				const arrow_2 = this.scene.add.image(390+x_0_offset, 300+y_0_offset, card_graphics_array[14]);
 				arrow_2.setOrigin(0,0);
-				arrow_2.angle = 180;
+				arrow_2.angle = 0;
 				arrow_2.setScale(0.5);
-				this.add(arrow_2);			
+				this.add(arrow_2);
+
+				/*
+				const arrow_3 = this.scene.add.image(580+x_270_offset, 300+y_270_offset, card_graphics_array[14]);
+				arrow_3.setOrigin(0,0);
+				arrow_3.angle = 270;
+				arrow_3.setScale(0.5);
+				this.add(arrow_3);			
 				
 				
+				const arrow_4 = this.scene.add.image(655+x_270_offset, 300+y_270_offset, card_graphics_array[14]);
+				arrow_4.setOrigin(0,0);
+				arrow_4.angle = 270;
+				arrow_4.setScale(0.5);
+				this.add(arrow_4);
+				
+				*/
+				
+				instruct_x = 100;
+				instruct_y = 420;//+Math.floor(Math.random()*100);
+
+				const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[15]).setInteractive();
+				box.setOrigin(0,0);
+				box.setScale(0.5);
+				this.add(box);
+				box.on('pointerdown', () => {this.clickMe(scene);});
+				box.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
+
+				demo_instructions_text ="Good Job!  You now control the USA country box, and you can use its Alliance and Space Program resources.";
+
+				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_instructions.setOrigin(0,0);
+				demo_instructions.on('pointerdown', () => {this.clickMe(scene);});
+				demo_instructions.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
+				this.add(demo_instructions);
+
+				demo_next_step_text = "Click on this box to continue";
+				const demo_next_step = this.scene.add.text(instruct_x+20, instruct_y+145, demo_next_step_text, { fontSize: 'bold 24px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_next_step.setOrigin(0,0);
+				demo_next_step.on('pointerdown', () => {this.clickMe(scene);});
+				demo_next_step.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});		
+				this.add(demo_next_step);
+
+
+				step=step+1;
+				
+				this.scene.add.existing(this);
+				this.depth = 95;		
+				
+			}
+			else
+			{
+				phase = 9;
+
+				const arrow_1 = this.scene.add.image(430+x_270_offset, 300+y_270_offset, card_graphics_array[14]);
+				arrow_1.setOrigin(0,0);
+				arrow_1.angle = 270;
+				arrow_1.setScale(0.5);
+				this.add(arrow_1);			
+				
+				/*
+				const arrow_2 = this.scene.add.image(155+x_0_offset, 540+y_0_offset, card_graphics_array[14]);
+				arrow_2.setOrigin(0,0);
+				arrow_2.angle = 0;
+				arrow_2.setScale(0.5);
+				this.add(arrow_2);
+
 				const arrow_3 = this.scene.add.image(290+x_0_offset, 347+y_0_offset, card_graphics_array[14]);
 				arrow_3.setOrigin(0,0);
 				arrow_3.angle = 0;
@@ -573,8 +645,8 @@ class demo_container extends Phaser.GameObjects.Container
 				
 				*/
 				
-				instruct_x = 50;
-				instruct_y = 250;//+Math.floor(Math.random()*100);
+				instruct_x = 200;
+				instruct_y = 400;//+Math.floor(Math.random()*100);
 
 				const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[15]).setInteractive();
 				box.setOrigin(0,0);
@@ -583,7 +655,71 @@ class demo_container extends Phaser.GameObjects.Container
 				box.on('pointerdown', () => {this.clickMe(scene);});
 				box.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
 
-				demo_instructions_text ="You actually have an agent in an orange law enforcement box with an information level of 5, so you are close to being able to play the Pick Next Card action";
+				demo_instructions_text ="Let's place an agent in the Yellow Political Party Capability box by clicking on the box.";
+
+				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_instructions.setOrigin(0,0);
+				demo_instructions.on('pointerdown', () => {this.clickMe(scene);});
+				demo_instructions.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
+				this.add(demo_instructions);
+
+				demo_next_step_text = "Click the yellow box below the arrow";
+				const demo_next_step = this.scene.add.text(instruct_x+20, instruct_y+145, demo_next_step_text, { fontSize: 'bold 24px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_next_step.setOrigin(0,0);
+				demo_next_step.on('pointerdown', () => {this.clickMe(scene);});
+				demo_next_step.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});		
+				this.add(demo_next_step);
+
+
+				//step=step+1;
+				
+				this.scene.add.existing(this);
+				this.depth = 95;		
+			}
+		}
+		else if(step == 8)
+		{
+				phase = 9;
+
+				const arrow_1 = this.scene.add.image(100+x_90_offset+10, 643+y_90_offset, card_graphics_array[14]);
+				arrow_1.setOrigin(0,0);
+				arrow_1.angle = 90;
+				arrow_1.setScale(0.5);
+				this.add(arrow_1);			
+				
+				
+				const arrow_2 = this.scene.add.image(186+x_90_offset+10, 683+y_90_offset, card_graphics_array[14]);
+				arrow_2.setOrigin(0,0);
+				arrow_2.angle = 90;
+				arrow_2.setScale(0.5);
+				this.add(arrow_2);			
+				
+				
+				const arrow_3 = this.scene.add.image(240+x_90_offset, 683+y_90_offset, card_graphics_array[14]);
+				arrow_3.setOrigin(0,0);
+				arrow_3.angle = 90;
+				arrow_3.setScale(0.5);
+				this.add(arrow_3);			
+				
+				
+				const arrow_4 = this.scene.add.image(286+x_90_offset, 683+y_90_offset, card_graphics_array[14]);
+				arrow_4.setOrigin(0,0);
+				arrow_4.angle = 90;
+				arrow_4.setScale(0.5);
+				this.add(arrow_4);
+				
+				
+				instruct_x = 50;
+				instruct_y = 400;//+Math.floor(Math.random()*100);
+
+				const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[15]).setInteractive();
+				box.setOrigin(0,0);
+				box.setScale(0.5);
+				this.add(box);
+				box.on('pointerdown', () => {this.clickMe(scene);});
+				box.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
+
+				demo_instructions_text ="Some actions, such as Remove Card From Deck, require Country box resources.  You currently cannot use this action because you only have one of the three required resources.";
 
 				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
 				demo_instructions.setOrigin(0,0);
@@ -607,31 +743,35 @@ class demo_container extends Phaser.GameObjects.Container
 		else if(step == 9)
 		{
 				phase = 9;
+				
+				
 
-				const arrow_1 = this.scene.add.image(90+x_90_offset, 550+y_90_offset, card_graphics_array[14]);
+				const arrow_1 = this.scene.add.image(90+x_90_offset, 35+y_90_offset, card_graphics_array[14]);
 				arrow_1.setOrigin(0,0);
 				arrow_1.angle = 90;
 				arrow_1.setScale(0.5);
 				this.add(arrow_1);
 
-				const arrow_2 = this.scene.add.image(demo_agent_x[33]+x_0_offset+50, demo_agent_y[33]+y_0_offset+11, card_graphics_array[14]);
+				const arrow_2 = this.scene.add.image(240+x_90_offset, 85+y_90_offset, card_graphics_array[14]);
 				arrow_2.setOrigin(0,0);
 				arrow_2.angle = 0;
 				arrow_2.setScale(0.5);
 				this.add(arrow_2);			
 
-				const arrow_3 = this.scene.add.image(demo_agent_x[37]+x_0_offset+50, demo_agent_y[37]+y_0_offset+11, card_graphics_array[14]);
+				
+				const arrow_3 = this.scene.add.image(45+x_0_offset, 563+y_0_offset, card_graphics_array[14]);
 				arrow_3.setOrigin(0,0);
 				arrow_3.angle = 0;
 				arrow_3.setScale(0.5);
 				this.add(arrow_3);			
-
-				const arrow_4 = this.scene.add.image(demo_agent_x[44]+x_0_offset+50, demo_agent_y[44]+y_0_offset+11, card_graphics_array[14]);
+				
+				
+				const arrow_4 = this.scene.add.image(45+x_0_offset, 630+y_0_offset, card_graphics_array[14]);
 				arrow_4.setOrigin(0,0);
 				arrow_4.angle = 0;
 				arrow_4.setScale(0.5);
 				this.add(arrow_4);			
-
+				
 								
 				instruct_x = 225;
 				instruct_y = 275;//+Math.floor(Math.random()*100);
@@ -643,7 +783,7 @@ class demo_container extends Phaser.GameObjects.Container
 				box.on('pointerdown', () => {this.clickMe(scene);});
 				box.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
 
-				demo_instructions_text ="You can increase the information level of this agent by playing the Increase Info Level action.  When you do, the current card will also take effect.  In this case, your three agents in green intelligence boxes will each lose a stealth point";
+				demo_instructions_text ="That is how you play the game.  If you get stuck, there are always instructions at the top of the screen.  You can also click on the KEY button or the i buttons for help and explanation.  Good luck!";
 
 				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
 				demo_instructions.setOrigin(0,0);
@@ -651,7 +791,7 @@ class demo_container extends Phaser.GameObjects.Container
 				demo_instructions.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
 				this.add(demo_instructions);
 
-				demo_next_step_text = "Click on this box to continue";
+				demo_next_step_text = "Click on this box to end the demo";
 				const demo_next_step = this.scene.add.text(instruct_x+20, instruct_y+145, demo_next_step_text, { fontSize: 'bold 24px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
 				demo_next_step.setOrigin(0,0);
 				demo_next_step.on('pointerdown', () => {this.clickMe(scene);});
@@ -666,479 +806,10 @@ class demo_container extends Phaser.GameObjects.Container
 		}
 		else if(step == 10)
 		{
-			if(button_no==6)
-			{
-				phase = 9;
-
-				const arrow_2 = this.scene.add.image(demo_agent_x[33]+x_0_offset+50, demo_agent_y[33]+y_0_offset+11, card_graphics_array[14]);
-				arrow_2.setOrigin(0,0);
-				arrow_2.angle = 0;
-				arrow_2.setScale(0.5);
-				this.add(arrow_2);			
-
-				const arrow_3 = this.scene.add.image(demo_agent_x[37]+x_0_offset+50, demo_agent_y[37]+y_0_offset+11, card_graphics_array[14]);
-				arrow_3.setOrigin(0,0);
-				arrow_3.angle = 0;
-				arrow_3.setScale(0.5);
-				this.add(arrow_3);			
-
-				const arrow_4 = this.scene.add.image(demo_agent_x[44]+x_0_offset+50, demo_agent_y[44]+y_0_offset+11, card_graphics_array[14]);
-				arrow_4.setOrigin(0,0);
-				arrow_4.angle = 0;
-				arrow_4.setScale(0.5);
-				this.add(arrow_4);			
-				
-				/*
-				const arrow_4 = this.scene.add.image(0+x_270_offset, 0+y_270_offset, card_graphics_array[14]);
-				arrow_4.setOrigin(0,0);
-				arrow_4.angle = 270;
-				arrow_4.setScale(0.5);
-				this.add(arrow_4);
-				
-				*/
-				
-				instruct_x = 50;
-				instruct_y = 250;//+Math.floor(Math.random()*100);
-
-				const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[15]).setInteractive();
-				box.setOrigin(0,0);
-				box.setScale(0.5);
-				this.add(box);
-				box.on('pointerdown', () => {this.clickMe(scene);});
-				box.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
-
-				demo_instructions_text ="Bad news first: each agent in a green intelligence box lost a stealth point";
-
-				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
-				demo_instructions.setOrigin(0,0);
-				demo_instructions.on('pointerdown', () => {this.clickMe(scene);});
-				demo_instructions.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
-				this.add(demo_instructions);
-
-				demo_next_step_text = "Click on this box to continue";
-				const demo_next_step = this.scene.add.text(instruct_x+20, instruct_y+145, demo_next_step_text, { fontSize: 'bold 24px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
-				demo_next_step.setOrigin(0,0);
-				demo_next_step.on('pointerdown', () => {this.clickMe(scene);});
-				demo_next_step.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});		
-				this.add(demo_next_step);
-
-
-				step=step+1;
-				
-				this.scene.add.existing(this);
-				this.depth = 95;
-				
-			}
-			else
-			{
-
-				phase = 9;
-
-				const arrow_1 = this.scene.add.image(155+x_0_offset, 540+y_0_offset, card_graphics_array[14]);
-				arrow_1.setOrigin(0,0);
-				arrow_1.angle = 0;
-				arrow_1.setScale(0.5);
-				this.add(arrow_1);
-				
-				/*
-				const arrow_2 = this.scene.add.image(290+x_0_offset, 400+y_0_offset, card_graphics_array[14]);
-				arrow_2.setOrigin(0,0);
-				arrow_2.angle = 0;
-				arrow_2.setScale(0.5);
-				this.add(arrow_2);
-
-				
-				const arrow_3 = this.scene.add.image(0+x_180_offset, 0+y_180_offset, card_graphics_array[14]);
-				arrow_3.setOrigin(0,0);
-				arrow_3.angle = 180;
-				arrow_3.setScale(0.5);
-				this.add(arrow_3);
-
-				const arrow_4 = this.scene.add.image(0+x_270_offset, 0+y_270_offset, card_graphics_array[14]);
-				arrow_4.setOrigin(0,0);
-				arrow_4.angle = 270;
-				arrow_4.setScale(0.5);
-				this.add(arrow_4);
-				
-				*/
-				
-				instruct_x = 100;
-				instruct_y = 600;//+Math.floor(Math.random()*100);
-
-				const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[15]).setInteractive();
-				box.setOrigin(0,0);
-				box.setScale(0.5);
-				this.add(box);
-				box.on('pointerdown', () => {this.clickMe(scene);});
-				box.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
-
-				demo_instructions_text ="Go ahead and press the PLAY button for the Increase Info Level action";
-
-				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
-				demo_instructions.setOrigin(0,0);
-				demo_instructions.on('pointerdown', () => {this.clickMe(scene);});
-				demo_instructions.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
-				this.add(demo_instructions);
-
-				demo_next_step_text = "Click on the PLAY button to continue";
-				const demo_next_step = this.scene.add.text(instruct_x+20, instruct_y+145, demo_next_step_text, { fontSize: 'bold 24px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
-				demo_next_step.setOrigin(0,0);
-				demo_next_step.on('pointerdown', () => {this.clickMe(scene);});
-				demo_next_step.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});		
-				this.add(demo_next_step);
-
-
-				//step=step+1;
-				
-				this.scene.add.existing(this);
-				this.depth = 95;
-				
-				
-			}
-		
-		}
-		else if(step == 11)
-		{
+			step = -1;
+			phase = 0;
 			
-			
-			if(box_no==6)
-			{
-				phase = 9;
-
-				const arrow_1 = this.scene.add.image(100+x_270_offset, 805+y_270_offset, card_graphics_array[14]);
-				arrow_1.setOrigin(0,0);
-				arrow_1.angle = 270;
-				arrow_1.setScale(0.5);
-				this.add(arrow_1);			
-
-				/*
-				const arrow_3 = this.scene.add.image(demo_agent_x[37]+x_0_offset+50, demo_agent_y[37]+y_0_offset+11, card_graphics_array[14]);
-				arrow_3.setOrigin(0,0);
-				arrow_3.angle = 0;
-				arrow_3.setScale(0.5);
-				this.add(arrow_3);			
-
-				const arrow_4 = this.scene.add.image(demo_agent_x[44]+x_0_offset+50, demo_agent_y[44]+y_0_offset+11, card_graphics_array[14]);
-				arrow_4.setOrigin(0,0);
-				arrow_4.angle = 0;
-				arrow_4.setScale(0.5);
-				this.add(arrow_4);			
-				
-				
-				const arrow_4 = this.scene.add.image(0+x_270_offset, 0+y_270_offset, card_graphics_array[14]);
-				arrow_4.setOrigin(0,0);
-				arrow_4.angle = 270;
-				arrow_4.setScale(0.5);
-				this.add(arrow_4);
-				
-				*/
-				
-				instruct_x = 50;
-				instruct_y = 250;//+Math.floor(Math.random()*100);
-
-				const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[15]).setInteractive();
-				box.setOrigin(0,0);
-				box.setScale(0.5);
-				this.add(box);
-				box.on('pointerdown', () => {this.clickMe(scene);});
-				box.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
-
-				demo_instructions_text ="Now the good news: the Pick Next Card action is now playable.  You have agents with the right information levels in the right boxes";
-
-				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
-				demo_instructions.setOrigin(0,0);
-				demo_instructions.on('pointerdown', () => {this.clickMe(scene);});
-				demo_instructions.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
-				this.add(demo_instructions);
-
-				demo_next_step_text = "Click on this box to continue";
-				const demo_next_step = this.scene.add.text(instruct_x+20, instruct_y+145, demo_next_step_text, { fontSize: 'bold 24px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
-				demo_next_step.setOrigin(0,0);
-				demo_next_step.on('pointerdown', () => {this.clickMe(scene);});
-				demo_next_step.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});		
-				this.add(demo_next_step);
-
-
-				step=step+1;
-				
-				this.scene.add.existing(this);
-				this.depth = 95;
-				
-			}
-			else
-			{
-
-				phase = 9;
-
-				const arrow_1 = this.scene.add.image(demo_agent_x[6]+x_180_offset+10, demo_agent_y[6]+y_180_offset+13, card_graphics_array[14]);
-				arrow_1.setOrigin(0,0);
-				arrow_1.angle = 180;
-				arrow_1.setScale(0.5);
-				this.add(arrow_1);			
-				
-				/*
-				const arrow_2 = this.scene.add.image(290+x_0_offset, 400+y_0_offset, card_graphics_array[14]);
-				arrow_2.setOrigin(0,0);
-				arrow_2.angle = 0;
-				arrow_2.setScale(0.5);
-				this.add(arrow_2);
-
-				
-				const arrow_3 = this.scene.add.image(0+x_180_offset, 0+y_180_offset, card_graphics_array[14]);
-				arrow_3.setOrigin(0,0);
-				arrow_3.angle = 180;
-				arrow_3.setScale(0.5);
-				this.add(arrow_3);
-
-				const arrow_4 = this.scene.add.image(0+x_270_offset, 0+y_270_offset, card_graphics_array[14]);
-				arrow_4.setOrigin(0,0);
-				arrow_4.angle = 270;
-				arrow_4.setScale(0.5);
-				this.add(arrow_4);
-				
-				*/
-				
-				instruct_x = 50;
-				instruct_y = 300;//+Math.floor(Math.random()*100);
-
-				const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[15]).setInteractive();
-				box.setOrigin(0,0);
-				box.setScale(0.5);
-				this.add(box);
-				box.on('pointerdown', () => {this.clickMe(scene);});
-				box.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
-
-				demo_instructions_text ="Go ahead and click on the agent in the orange law enforcement box next to the green arrow.  This will increase the agent's information level by 1";
-
-				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
-				demo_instructions.setOrigin(0,0);
-				demo_instructions.on('pointerdown', () => {this.clickMe(scene);});
-				demo_instructions.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
-				this.add(demo_instructions);
-
-				demo_next_step_text = "Click on the agent to continue";
-				const demo_next_step = this.scene.add.text(instruct_x+20, instruct_y+145, demo_next_step_text, { fontSize: 'bold 24px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
-				demo_next_step.setOrigin(0,0);
-				demo_next_step.on('pointerdown', () => {this.clickMe(scene);});
-				demo_next_step.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});		
-				this.add(demo_next_step);
-
-
-				//step=step+1;
-				
-				this.scene.add.existing(this);
-				this.depth = 95;
-				
-				
-			}
-		
-		}
-		else if(step == 12)
-		{
-				phase = 9;
-
-				const arrow_1 = this.scene.add.image(demo_agent_x[3]+x_180_offset-5, demo_agent_y[3]+y_180_offset+60, card_graphics_array[14]);
-				arrow_1.setOrigin(0,0);
-				arrow_1.angle = 180;
-				arrow_1.setScale(0.5);
-				this.add(arrow_1);
-
-				/*
-				const arrow_2 = this.scene.add.image(demo_agent_x[33]+x_0_offset+50, demo_agent_y[33]+y_0_offset+11, card_graphics_array[14]);
-				arrow_2.setOrigin(0,0);
-				arrow_2.angle = 0;
-				arrow_2.setScale(0.5);
-				this.add(arrow_2);			
-
-				const arrow_3 = this.scene.add.image(demo_agent_x[37]+x_0_offset+50, demo_agent_y[37]+y_0_offset+11, card_graphics_array[14]);
-				arrow_3.setOrigin(0,0);
-				arrow_3.angle = 0;
-				arrow_3.setScale(0.5);
-				this.add(arrow_3);			
-
-				const arrow_4 = this.scene.add.image(demo_agent_x[44]+x_0_offset+50, demo_agent_y[44]+y_0_offset+11, card_graphics_array[14]);
-				arrow_4.setOrigin(0,0);
-				arrow_4.angle = 0;
-				arrow_4.setScale(0.5);
-				this.add(arrow_4);			
-				*/
-								
-				instruct_x = 200;
-				instruct_y = 325;//+Math.floor(Math.random()*100);
-
-				const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[15]).setInteractive();
-				box.setOrigin(0,0);
-				box.setScale(0.5);
-				this.add(box);
-				box.on('pointerdown', () => {this.clickMe(scene);});
-				box.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
-
-				demo_instructions_text ="You can also score victory points if you have an agent in a box with a VP value at the end of the game.  The box next to the green arrow will get you 2 VP...if you can place an agent in it, and prevent the agent from being captured until the end of the game!";
-
-				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
-				demo_instructions.setOrigin(0,0);
-				demo_instructions.on('pointerdown', () => {this.clickMe(scene);});
-				demo_instructions.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
-				this.add(demo_instructions);
-
-				demo_next_step_text = "Click on this box to continue";
-				const demo_next_step = this.scene.add.text(instruct_x+20, instruct_y+145, demo_next_step_text, { fontSize: 'bold 24px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
-				demo_next_step.setOrigin(0,0);
-				demo_next_step.on('pointerdown', () => {this.clickMe(scene);});
-				demo_next_step.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});		
-				this.add(demo_next_step);
-
-
-				step=step+1;
-				
-				this.scene.add.existing(this);
-				this.depth = 95;		
-		}
-		else if(step == 13)
-		{
-			
-			if(button_no==3)
-			{
-				phase = 9;
-
-				const arrow_1 = this.scene.add.image(700+x_90_offset, 75+y_90_offset, card_graphics_array[14]);
-				arrow_1.setOrigin(0,0);
-				arrow_1.angle = 90;
-				arrow_1.setScale(0.5);
-				this.add(arrow_1);			
-
-				const arrow_2 = this.scene.add.image(demo_agent_x[33]+x_270_offset+15, demo_agent_y[33]+y_270_offset+10, card_graphics_array[14]);
-				arrow_2.setOrigin(0,0);
-				arrow_2.angle = 270;
-				arrow_2.setScale(0.5);
-				this.add(arrow_2);			
-
-				/*
-				const arrow_3 = this.scene.add.image(demo_agent_x[37]+x_0_offset+50, demo_agent_y[37]+y_0_offset+11, card_graphics_array[14]);
-				arrow_3.setOrigin(0,0);
-				arrow_3.angle = 0;
-				arrow_3.setScale(0.5);
-				this.add(arrow_3);			
-
-				const arrow_4 = this.scene.add.image(demo_agent_x[44]+x_0_offset+50, demo_agent_y[44]+y_0_offset+11, card_graphics_array[14]);
-				arrow_4.setOrigin(0,0);
-				arrow_4.angle = 0;
-				arrow_4.setScale(0.5);
-				this.add(arrow_4);			
-				
-				
-				const arrow_4 = this.scene.add.image(0+x_270_offset, 0+y_270_offset, card_graphics_array[14]);
-				arrow_4.setOrigin(0,0);
-				arrow_4.angle = 270;
-				arrow_4.setScale(0.5);
-				this.add(arrow_4);
-				
-				*/
-				
-				instruct_x = 100;
-				instruct_y = 600;//+Math.floor(Math.random()*100);
-
-				const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[15]).setInteractive();
-				box.setOrigin(0,0);
-				box.setScale(0.5);
-				this.add(box);
-				box.on('pointerdown', () => {this.clickMe(scene);});
-				box.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
-
-				demo_instructions_text ="Looks like the stealth value of one of your agent's reached zero!  When this happens, the agent is removed from the board, and the agent's information value is subtracted from your VP total.  You are now ready to play the game.  Good Luck!";
-
-				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
-				demo_instructions.setOrigin(0,0);
-				demo_instructions.on('pointerdown', () => {this.clickMe(scene);});
-				demo_instructions.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
-				this.add(demo_instructions);
-
-				demo_next_step_text = "Click on this box to continue";
-				const demo_next_step = this.scene.add.text(instruct_x+20, instruct_y+145, demo_next_step_text, { fontSize: 'bold 24px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
-				demo_next_step.setOrigin(0,0);
-				demo_next_step.on('pointerdown', () => {this.clickMe(scene);});
-				demo_next_step.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});		
-				this.add(demo_next_step);
-
-
-				step=0;//step+1;
-				demo_completed = 1;
-				save_game();
-				
-				this.scene.add.existing(this);
-				this.depth = 96;
-				
-			}
-			else
-			{
-
-				phase = 9;
-
-				const arrow_1 = this.scene.add.image(290+x_0_offset, 347+y_0_offset, card_graphics_array[14]);
-				arrow_1.setOrigin(0,0);
-				arrow_1.angle = 0;
-				arrow_1.setScale(0.5);
-				this.add(arrow_1);			
-
-	
-				
-				/*
-				const arrow_2 = this.scene.add.image(290+x_0_offset, 400+y_0_offset, card_graphics_array[14]);
-				arrow_2.setOrigin(0,0);
-				arrow_2.angle = 0;
-				arrow_2.setScale(0.5);
-				this.add(arrow_2);
-
-				
-				const arrow_3 = this.scene.add.image(0+x_180_offset, 0+y_180_offset, card_graphics_array[14]);
-				arrow_3.setOrigin(0,0);
-				arrow_3.angle = 180;
-				arrow_3.setScale(0.5);
-				this.add(arrow_3);
-
-				const arrow_4 = this.scene.add.image(0+x_270_offset, 0+y_270_offset, card_graphics_array[14]);
-				arrow_4.setOrigin(0,0);
-				arrow_4.angle = 270;
-				arrow_4.setScale(0.5);
-				this.add(arrow_4);
-				
-				*/
-				
-				instruct_x = 100;
-				instruct_y = 400;//+Math.floor(Math.random()*100);
-
-				const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[15]).setInteractive();
-				box.setOrigin(0,0);
-				box.setScale(0.5);
-				this.add(box);
-				box.on('pointerdown', () => {this.clickMe(scene);});
-				box.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
-
-				demo_instructions_text ="Go ahead and press the pass button on the new card to proceed";
-
-				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
-				demo_instructions.setOrigin(0,0);
-				demo_instructions.on('pointerdown', () => {this.clickMe(scene);});
-				demo_instructions.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
-				this.add(demo_instructions);
-
-				demo_next_step_text = "Press the PASS button";
-				const demo_next_step = this.scene.add.text(instruct_x+20, instruct_y+145, demo_next_step_text, { fontSize: 'bold 24px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
-				demo_next_step.setOrigin(0,0);
-				demo_next_step.on('pointerdown', () => {this.clickMe(scene);});
-				demo_next_step.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});		
-				this.add(demo_next_step);
-
-
-				//step=step+1;
-				
-				this.scene.add.existing(this);
-				this.depth = 95;
-				
-				
-			}
-		
-		}
+		}	
 
 
 	}

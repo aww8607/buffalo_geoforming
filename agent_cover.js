@@ -70,9 +70,10 @@ class agent_cover extends Phaser.GameObjects.Container
 			//black_border_array[c_no].visible = true;
 		}
 		
-		if(step == 11 && c_no == 6)
+		if(step == 7 && c_no == 15)
 		{
-			phase = 4;	
+			//phase = 4;	
+			phase = 3;
 		}
 		
 		
@@ -138,7 +139,7 @@ class agent_cover extends Phaser.GameObjects.Container
 				military_point_text.text = military_points+carbon_text;
 				
 				perm_action_playability_check();
-				
+				demo_update(scene, step, 0, c_no);
 				phase = 0;
 			}
 		}

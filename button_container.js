@@ -141,6 +141,9 @@ class button_container extends Phaser.GameObjects.Container
 		{
 			//console.log("Increase Stealth");			
 			
+			if(step == 6){phase = 0;}	
+
+			
 			if(phase == 0)
 			{	
 				dim_map(-1);
@@ -148,16 +151,17 @@ class button_container extends Phaser.GameObjects.Container
 
 				if(auto_card[action_card_choice]==1)
 				{
+					//demo_update(scene, step, 5, 0);
 					play_card(action_card_choice, scene);
 				}
 				
 				phase = 3;
-
+				demo_update(scene, step, 5, 0);
 				
 				for(var p=0; p<56; p++)
 				{
 					//if(agent_present[p] == 1 && info_stealth[p]<9)
-					if(agent_present[p] == 1 && info_value[p]<9)
+					if(agent_present[p] == 1 && info_value[p]<9 && p % 7 != 0)
 					{
 						red_map_border_array[p].visible = true;
 						bright_map(p);						
