@@ -70,7 +70,7 @@ class agent_cover extends Phaser.GameObjects.Container
 			//black_border_array[c_no].visible = true;
 		}
 		
-		if(step == 7 && c_no == 15)
+		if(step == 8 && c_no == 15)
 		{
 			//phase = 4;	
 			phase = 3;

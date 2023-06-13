@@ -132,9 +132,9 @@
 		this.load.image(card_graphics_array[graphic_count],'graphics/victory_screen_image.png');
 		graphic_count=graphic_count+1;
 		
-		//arrest graphic 17 //KGB
+		//arrest graphic 17 //Solar Shade
 		card_graphics_array[graphic_count]="_"+graphic_count;
-		this.load.image(card_graphics_array[graphic_count],'graphics/KGB.png');
+		this.load.image(card_graphics_array[graphic_count],'graphics/space_shade_graphic.png');
 		graphic_count=graphic_count+1;
 
 		//arrest graphic 18 //Key graphic
@@ -329,7 +329,7 @@
 		demo_completion_check();
 
 
-		if(game_saved == 0)
+		if(game_saved == 0 || demo_completed == 0)
 		{
 			pick_new_agents();	
 			build_action_card_deck(this);

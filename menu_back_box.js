@@ -12,7 +12,7 @@ class menu_back_box extends Phaser.GameObjects.Container{
 		var total_score_message_text = '';
 		var box_control_vps = 0;
 		
-		var intro_text = 'This is a game about the Soviet foreign intelligence service’s effort to place spies at the highest levels of the British intelligence establishment.  You win this game by steadily increasing the level of information that your agents can access and share with you.  You must be careful, however.  The arrest of a highly placed spy could ruin your entire operation.  To be successful, you must keep your agents hidden within the corridors of power, quietly harvesting British secrets.  Good luck!'
+		var intro_text = 'This is a game about reducing Earth’s average temperature to avoid human extinction. Reducing carbon emissions is vitally necessary to stop the increase in temperature. However, there are other mechanisms that can actually pull CO2 out of the atmosphere or block sunshine from reaching Earth. You can try carbon sequestration or space-based solar shades in this game. In the game, you represent a global network of environmental activists. You need to place your activists on a game board that represents institutions and industries across various nations. Place your activists in a manner that maximizes support for the temperature reduction strategy that you choose. Good luck!'
 		var victory_level_message_text = 'MAJOR VICTORY';
 
 		var temp_calculation_explanation = 'In this game, temperature change is a function of the amount of carbon in the atmosphere and the amount of sunlight reaching the surface of the earth.  Temperature change is measured in degrees Celsius from the global average temperature baseline at the beginning of the game.  The amount of temperature change impacts other elements in the game, such as the severity of weather events.  The more carbon dioxide in the atmosphere, the higher the change in temperature.  You can slow the rate of temperature change by increasing your geoengineering points.  These points represent efforts to block or reflect sunlight before these photons can increase the temperature of the atmosphere.  This is the formula: degrees of temperature change = carbon  / ('+carbon_denominator_constant+' + '+geoforming_multiplier+' * geoengineering points).';	
@@ -204,27 +204,27 @@ class menu_back_box extends Phaser.GameObjects.Container{
 			title_text.y = 850 - 20+5;
 			this.add(title_text);				
 
-			var game_title_text = this.scene.add.text(0, 5, 'KGB', { fontSize: 'bold 124px', color: '#000000', wordWrap: { width: 500, useAdvancedWrap: true}});
+			var game_title_text = this.scene.add.text(0, 5, 'GEOFORMING', { fontSize: 'bold 124px', color: '#000000', wordWrap: { width: 800, useAdvancedWrap: true}});
 			game_title_text.setOrigin(0,0);
-			game_title_text.x = 850 - 325;
+			game_title_text.x = 740/2 + (button_width - game_title_text.width)/2;
 			game_title_text.y = 50;
 			this.add(game_title_text);				
 
-			var game_description = this.scene.add.text(0, 5, intro_text, { fontSize: 'bold 20px', color: '#000000', wordWrap: { width: 310, useAdvancedWrap: true}});
+			var game_description = this.scene.add.text(0, 5, intro_text, { fontSize: 'bold 20px', color: '#000000', wordWrap: { width: 800, useAdvancedWrap: true}});
 			game_description.setOrigin(0,0);
-			game_description.x = 850 - 325;
+			game_description.x = 740/2 + (button_width - game_description.width)/2;
 			game_description.y = 200;
 			this.add(game_description);				
 
 			var KGB_icon = this.scene.add.image(0, 0, card_graphics_array[17]);
 			KGB_icon.setOrigin(0,0);
 			KGB_icon.scale = 0.50;
-			KGB_icon.x = 40;
-			KGB_icon.y = 45;
+			KGB_icon.x = 240;
+			KGB_icon.y = 500;
 			
 			this.add(KGB_icon);	
 
-			var copyright_text = this.scene.add.text(0, 5, 'Copyright 2022: Africa Cross Games LCC v9.00', { fontSize: '18px', color: '#000000', wordWrap: { width: 500, useAdvancedWrap: true}});
+			var copyright_text = this.scene.add.text(0, 5, 'Copyright 2023: Africa Cross Games LCC v9.01', { fontSize: '18px', color: '#000000', wordWrap: { width: 500, useAdvancedWrap: true}});
 			copyright_text.setOrigin(0,0);
 			copyright_text.x = 40;
 			copyright_text.y = 835;
@@ -259,21 +259,21 @@ class menu_back_box extends Phaser.GameObjects.Container{
 			var KGB_icon = this.scene.add.image(0, 0, card_graphics_array[17]);
 			KGB_icon.setOrigin(0,0);
 			KGB_icon.scale = 0.50;
-			KGB_icon.x = 40;
-			KGB_icon.y = 45;
+			KGB_icon.x = 240;
+			KGB_icon.y = 500;
 			
 			this.add(KGB_icon);	
 
-			var game_title_text = this.scene.add.text(0, 5, 'KGB', { fontSize: 'bold 124px', color: '#000000', wordWrap: { width: 500, useAdvancedWrap: true}});
+			var game_title_text = this.scene.add.text(0, 5, 'GEOFORMING', { fontSize: 'bold 124px', color: '#000000', wordWrap: { width: 800, useAdvancedWrap: true}});
 			game_title_text.setOrigin(0,0);
-			game_title_text.x = 850 - 325;
+			game_title_text.x = 740/2 + (button_width - game_title_text.width)/2;
 			game_title_text.y = 50;
 			this.add(game_title_text);				
 
 
-			var game_description = this.scene.add.text(0, 5, intro_text, { fontSize: 'bold 20px', color: '#000000', wordWrap: { width: 310, useAdvancedWrap: true}});
+			var game_description = this.scene.add.text(0, 5, intro_text, { fontSize: 'bold 20px', color: '#000000', wordWrap: { width: 800, useAdvancedWrap: true}});
 			game_description.setOrigin(0,0);
-			game_description.x = 850 - 325;
+			game_description.x = 740/2 + (button_width - game_description.width)/2;
 			game_description.y = 200;
 			this.add(game_description);				
 
@@ -684,7 +684,11 @@ class menu_back_box extends Phaser.GameObjects.Container{
 
 			//console.log('step 2');
 
-			if(menu_number == 1)
+			if(menu_number == 0)
+			{
+				phase = 0;
+			}
+			else if(menu_number == 1)
 			{
 			
 				//console.log('step 3');	
@@ -736,6 +740,9 @@ class menu_back_box extends Phaser.GameObjects.Container{
 					//console.log("play_no_demo");
 					
 					//console.log('step 10');
+
+					diplomacy_points = 3;
+					diplomacy_point_text.text = diplomacy_points+agent_name_text;
 					
 					step=1;
 					new_deck();
@@ -773,7 +780,10 @@ class menu_back_box extends Phaser.GameObjects.Container{
 				//}
 				
 			}
-
+			else if(menu_number == 2)
+			{
+				phase = 0;
+			}
 		}
 		else if(menu_number == 3)
 		{
@@ -796,10 +806,17 @@ class menu_back_box extends Phaser.GameObjects.Container{
 			
 			game_saved = 0;
 			save_game();
+			
+			
+			
+			if(menu_number == 2){phase = 0;}
+			
 		}
 		else if(menu_number == 4)
 		{
 			this.destroy();
+			
+			phase = 0;
 		}
 		
 	}

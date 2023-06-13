@@ -548,6 +548,68 @@ class demo_container extends Phaser.GameObjects.Container
 		}
 		else if(step == 7)
 		{
+				phase = 9;
+
+				const arrow_1 = this.scene.add.image(430+x_270_offset, 300+y_270_offset, card_graphics_array[14]);
+				arrow_1.setOrigin(0,0);
+				arrow_1.angle = 270;
+				arrow_1.setScale(0.5);
+				this.add(arrow_1);			
+				
+				/*
+				const arrow_2 = this.scene.add.image(155+x_0_offset, 540+y_0_offset, card_graphics_array[14]);
+				arrow_2.setOrigin(0,0);
+				arrow_2.angle = 0;
+				arrow_2.setScale(0.5);
+				this.add(arrow_2);
+
+				const arrow_3 = this.scene.add.image(290+x_0_offset, 347+y_0_offset, card_graphics_array[14]);
+				arrow_3.setOrigin(0,0);
+				arrow_3.angle = 0;
+				arrow_3.setScale(0.5);
+				this.add(arrow_3);			
+				
+				const arrow_4 = this.scene.add.image(0+x_270_offset, 0+y_270_offset, card_graphics_array[14]);
+				arrow_4.setOrigin(0,0);
+				arrow_4.angle = 270;
+				arrow_4.setScale(0.5);
+				this.add(arrow_4);
+				
+				*/
+				
+				instruct_x = 200;
+				instruct_y = 400;//+Math.floor(Math.random()*100);
+
+				const box = this.scene.add.image(instruct_x, instruct_y, card_graphics_array[15]).setInteractive();
+				box.setOrigin(0,0);
+				box.setScale(0.5);
+				this.add(box);
+				box.on('pointerdown', () => {this.clickMe(scene);});
+				box.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
+
+				demo_instructions_text ="Let's place an agent in the Yellow Political Party Capability box by clicking on the box.";
+
+				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_instructions.setOrigin(0,0);
+				demo_instructions.on('pointerdown', () => {this.clickMe(scene);});
+				demo_instructions.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
+				this.add(demo_instructions);
+
+				demo_next_step_text = "Click the yellow box below the arrow";
+				const demo_next_step = this.scene.add.text(instruct_x+20, instruct_y+145, demo_next_step_text, { fontSize: 'bold 24px', color: '#000000', wordWrap: { width: 620, useAdvancedWrap: true}}).setInteractive();
+				demo_next_step.setOrigin(0,0);
+				demo_next_step.on('pointerdown', () => {this.clickMe(scene);});
+				demo_next_step.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});		
+				this.add(demo_next_step);
+
+
+				step=step+1;
+				
+				this.scene.add.existing(this);
+				this.depth = 95;			
+		}
+		else if(step == 8)
+		{
 			if(box_no == 15)
 			{
 				phase = 9;
@@ -677,7 +739,7 @@ class demo_container extends Phaser.GameObjects.Container
 				this.depth = 95;		
 			}
 		}
-		else if(step == 8)
+		else if(step == 9)
 		{
 				phase = 9;
 
@@ -740,7 +802,7 @@ class demo_container extends Phaser.GameObjects.Container
 				this.scene.add.existing(this);
 				this.depth = 95;		
 		}
-		else if(step == 9)
+		else if(step == 10)
 		{
 				phase = 9;
 				
@@ -804,10 +866,11 @@ class demo_container extends Phaser.GameObjects.Container
 				this.scene.add.existing(this);
 				this.depth = 95;		
 		}
-		else if(step == 10)
+		else if(step == 11)
 		{
 			step = -1;
 			phase = 0;
+			demo_completed = 1;
 			
 		}	
 

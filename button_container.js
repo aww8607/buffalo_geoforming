@@ -67,6 +67,7 @@ class button_container extends Phaser.GameObjects.Container
 			if(phase == 0)
 			{
 				menu_back_box_holder = new menu_back_box(scene, 2);
+				phase = 12;
 			}
 		}
 		else if(b_no == 1)
@@ -76,6 +77,7 @@ class button_container extends Phaser.GameObjects.Container
 			if(phase == 0)
 			{
 				menu_back_box_holder = new menu_back_box(scene, 0);
+				phase = 12;
 			}
 		  //menu_back_box_holder.depth = 95;
 
@@ -86,6 +88,7 @@ class button_container extends Phaser.GameObjects.Container
 				
 			if(phase == 0)
 			{
+				
 				play_card(action_card_choice, scene);
 				//new_card();	
 			}

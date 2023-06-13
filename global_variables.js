@@ -12,6 +12,7 @@ Phases
 9 - demo phase
 10 - add mitigation marker
 11 - change code type
+12 - menu turn off
 
 */
 
@@ -19,7 +20,7 @@ Phases
 //New test commit
 
 
-var game_tag="Carbon_8_04_2022";
+var game_tag="Carbon_8_10_2022";
 
 var preloader_text;
 

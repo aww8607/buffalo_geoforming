@@ -71,5 +71,6 @@ class temp_info_box extends Phaser.GameObjects.Container
 	unclickMe(scene, box_state)
     {
 		menu_back_box_holder = new menu_back_box(scene, 4);
+		phase = 12;
 	}	
 }
