@@ -71,12 +71,12 @@ function int_permanent_actions(scene)
 	permanent_cost_used_1[4] = 1;
 	permanent_cost_meta_type_1[4] = 0; //box type
 	permanent_cost_type_1[4] = 2; //Technology	
-	permanent_cost_value_1[4] = 2; //no info level
+	permanent_cost_value_1[4] = 3; //no info level
 	
 	permanent_cost_used_2[4] = 1;
 	permanent_cost_meta_type_2[4] = 0; //box type
 	permanent_cost_type_2[4] = 5; //Opps point
-	permanent_cost_value_2[4] = 2; //no of opps points
+	permanent_cost_value_2[4] = 3; //no of opps points
 	
 	permanent_cost_used_3[4] = 1;
 	permanent_cost_meta_type_3[4] = 3; //Opps points
@@ -88,7 +88,7 @@ function int_permanent_actions(scene)
 	permanent_cost_used_1[5] = 1;
 	permanent_cost_meta_type_1[5] = 2; //Carbon increase
 	permanent_cost_type_1[5] = 0; //Increase
-	permanent_cost_value_1[5] = 20; //Number of carbon points
+	permanent_cost_value_1[5] = 40; //Number of carbon points
 	
 	permanent_cost_used_2[5] = 0;
 	permanent_cost_meta_type_2[5] = 0; //box type

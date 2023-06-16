@@ -326,8 +326,11 @@
 	
 		load_game();
 		
-		demo_completion_check();
-
+		
+		//demo_completion_check();
+		
+		//console.log("demo_completed: "+demo_completed);
+        
 
 		if(game_saved == 0 || demo_completed == 0)
 		{

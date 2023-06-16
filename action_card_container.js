@@ -813,7 +813,7 @@ class action_card_container extends Phaser.GameObjects.Container
 			{
 				if(action_var_1[card_no] == 1)
 				{
-					main_text = "Add "+action_var_1[card_no]+" Activists to the Activist total for every "+map_box_names[action_var_2[card_no]]+" box with "+action_var_3[card_no]+" or more Activists";
+					main_text = "Add "+action_var_1[card_no]+" Activist to the Activist total for every "+map_box_names[action_var_2[card_no]]+" box with "+action_var_3[card_no]+" or more Activists";
 				}
 				else if(action_var_1[card_no] > 1)
 				{

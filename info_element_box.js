@@ -173,7 +173,7 @@ class info_element_box extends Phaser.GameObjects.Container{
 				climate_status_check.setOrigin(0,0);
 				this.add(climate_status_check);
 				
-				var climate_status_info = scene.add.text(15+arrow_x_axis, 15+275+25, 'This box does not have a storm marker.  That means the tech level of the box can still be used to perform actions, and the support level of the box can still be used to control a country.', {fontSize: 'bold 18px', color: '#000000', wordWrap: { width: button_width-30, useAdvancedWrap: true}});
+				var climate_status_info = scene.add.text(15+arrow_x_axis, 15+275+25, 'This box does not have a storm marker.  That means that you can place Activists in this Capability box, and that the Activists in this box can be used for action requirements and to determine control of countries.', {fontSize: 'bold 18px', color: '#000000', wordWrap: { width: button_width-30, useAdvancedWrap: true}});
 				climate_status_info.setOrigin(0,0);
 				this.add(climate_status_info);
 				
@@ -254,7 +254,7 @@ class info_element_box extends Phaser.GameObjects.Container{
 				resource_left_name = resource_icon_modifier[resource_1[Math.floor(element_number/7,0)]]+' '+resource_icon_name[resource_1[Math.floor(element_number/7,0)]];
 				resource_right_name = resource_icon_modifier[resource_2[Math.floor(element_number/7,0)]]+' '+resource_icon_name[resource_2[Math.floor(element_number/7,0)]];				
 
-				political_control_text_element = 'You control this region becasue you have support points in '+control_level[Math.floor(element_number/7,0)]+' boxes, and you need support points in '+control_threshold[Math.floor(element_number/7,0)]+' boxes to control this country.  When you control a country, you can use its resources. This country has '+resource_left_name+' and '+resource_right_name+' resource';
+				political_control_text_element = 'You control this region becasue you have Activists in '+control_level[Math.floor(element_number/7,0)]+' boxes, and you need Activists in '+control_threshold[Math.floor(element_number/7,0)]+' boxes to control this country.  When you control a country, you can use its resources. This country has '+resource_left_name+' and '+resource_right_name+' resource';
 				
 				var control_status_text = scene.add.text(15+arrow_x_axis, 15+85, political_control_text_element, {fontSize: 'bold 18px', color: '#000000', wordWrap: { width: button_width-30, useAdvancedWrap: true}});
 				control_status_text.setOrigin(0,0);
@@ -269,7 +269,7 @@ class info_element_box extends Phaser.GameObjects.Container{
 				resource_left_name = resource_icon_modifier[resource_1[Math.floor(element_number/7,0)]]+' '+resource_icon_name[resource_1[Math.floor(element_number/7,0)]];
 				resource_right_name = resource_icon_modifier[resource_2[Math.floor(element_number/7,0)]]+' '+resource_icon_name[resource_2[Math.floor(element_number/7,0)]];				
 
-				political_control_text_element = 'You do not control this region becasue you only have support points in '+control_level[Math.floor(element_number/7,0)]+' boxes, and you need support points in '+control_threshold[Math.floor(element_number/7,0)]+' boxes to control this country.  When you control a country, you can use its resources. This country has '+resource_left_name+' and '+resource_right_name+' resource';
+				political_control_text_element = 'You do not control this region becasue you only have Activists in '+control_level[Math.floor(element_number/7,0)]+' boxes, and you need Activists in '+control_threshold[Math.floor(element_number/7,0)]+' boxes to control this country.  When you control a country, you can use its resources. This country has '+resource_left_name+' and '+resource_right_name+' resource';
 			
 				var control_status_text = scene.add.text(15+arrow_x_axis, 15+85, political_control_text_element, {fontSize: 'bold 18px', color: '#000000', wordWrap: { width: button_width-30, useAdvancedWrap: true}});
 				control_status_text.setOrigin(0,0);

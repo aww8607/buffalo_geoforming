@@ -395,7 +395,7 @@ class demo_container extends Phaser.GameObjects.Container
 				box.on('pointerdown', () => {this.clickMe(scene);});
 				box.on('pointerup', () => {this.unclickMe(scene, step_no, button_no, box_no);});
 
-				demo_instructions_text ="Each turn, you can choose to play one of the actions in the bottom right corner of the screen.  You can also press PASS if none of the actions work.  You move on to the next turn, and the action card’s action takes effect.";
+				demo_instructions_text ="Each turn, you can choose to play one of the actions in the bottom left corner of the screen.  You can also press PASS if none of the actions work.  You move on to the next turn, and the action card’s action takes effect.";
 
 				const demo_instructions = this.scene.add.text(instruct_x+20, instruct_y+20, demo_instructions_text, { fontSize: '18px', color: '#000000', wordWrap: { width: 610, useAdvancedWrap: true}}).setInteractive();
 				demo_instructions.setOrigin(0,0);
